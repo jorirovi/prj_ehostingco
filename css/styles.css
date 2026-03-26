@@ -1,0 +1,335 @@
+/* uso de variables para todo el documento */
+/*estilo de letra para el encabezado y pie de pagina*/
+@font-face {
+    font-family: 'textvideo';
+    src: url("../assets/fonts/Raleway-VariableFont_wght.ttf");
+}
+
+:root {
+    /*Paleta de colores*/
+    --azules-1: #2C63A4;
+    --azules-2: #6B798A;
+    --azules-3: #517396;
+    --azules-4: #0A5DC1;
+    --azules-5: #024FAC;
+    --amaril-1: #FBD933;
+    --amaril-2: #D2CA9F;
+    --amaril-3: #EFD971;
+    --amaril-4: #FFD300;
+    --rojos-1: #FB6333;
+    --rojos-2: #FF3D00;
+    --negro-1: #333;
+    --background-color: #f4f4f4;
+    --font-s: 12px;
+    --font-m: 16px;
+    --font-l: 20px;
+    --bs-body-font-family: textvideo, Arial, Helvetica, sans-serif;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: var(--bs-body-font-family);
+    background: var(--amaril-2);
+    overflow-x: hidden;
+}
+/*------------------- Estilos -----------------------*/
+.seccion-principal {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+.mb-100 {
+    margin-bottom: 100px;
+}
+/*++++++++++++++++++++ Header ++++++++++++++++++++++++*/
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 90px;
+    background: var(--azules-5);
+}
+
+.titulo-pagina {
+    word-spacing: 1px;
+    color: var(--rojos-1)
+}
+.mi-menu {
+    display: flex;
+    gap: .5rem;
+}
+.mi-menu a {
+    color: var(--rojos-1);
+    text-decoration: none;
+    font-size: var(--font-m);
+    font-weight:bold;
+}
+.mi-menu a:hover {
+    color: var(--amaril-2);
+}
+
+/*+++++++++++++++++++++++ Main +++++++++++++++++++++++++++++++*/
+main {
+    flex: 1
+}
+.seccion-menu {
+    display: flex;
+    justify-content: center;
+    position: sticky;
+    top: 0;
+    z-index: 99999;
+    background: var(--azules-5);
+}
+.navegador-secundario {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    gap: 1rem;
+    border-radius: 20px;
+    width: 96%
+}
+.navegador-secundario a {
+    color: var(--rojos-1);
+    text-decoration: var(--rojos-1);
+}
+.navegador-secundario a:hover {
+    color: var(--amaril-2);
+    font-weight: bold;
+}
+.seccion-eslogan {
+    background: url(../assets/images/hoating-vertical.jpg) no-repeat center center / cover;
+}
+.seccion-eslogan h2 {
+    text-align: center;
+    padding: 0 5%;
+    font-size: 50px;
+}
+.seccion-mision-vision {
+    flex-direction: column;
+    margin: 0 5%;
+}
+.seccion-mision {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 100px;
+}
+.seccion-mision img {
+    flex: 1;
+    object-fit: cover;
+    height: 300px;
+}
+.seccion-mision p {
+    flex: 1;
+    text-align: justify;
+}
+.seccion-mision p span {
+    color: var(--rojos-1);
+    font-weight: bold;
+    
+}
+.seccion-vision {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 100px;
+}
+.seccion-vision img {
+    flex: 1;
+    object-fit: cover;
+    height: 300px;
+}
+.seccion-vision p {
+    flex: 1;
+    text-align: justify;
+}
+.seccion-vision p span {
+    color: var(--rojos-1);
+    font-weight: bold;
+}
+/*+++++++++++++++++++++++ Contenedor Horizontal +++++++++++++++
+                          NOTICIAS
+ ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+.noticias {
+    height: 100vh;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: hidden;
+}
+.contenedor-noticias {
+    min-width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.noticias-contenido {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 90vw;
+    height: 75vh;
+    gap: 20px;
+}
+.noticia-titulo {
+    display: none;
+}
+.noticia-contenido-img {
+    border: 3px solid var(--rojos-1);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    width: 100%;
+    height: 100%;
+    /*aspect-ratio: 16 / 9;*/
+}
+.noticia-contenido-descripcion {
+    color: var(--rojos-1);
+    font-size: var(--font-m);
+    text-align: justify;
+}
+.noticia-link {
+    text-decoration: none;
+    color: var(--azules-1);
+    font-weight: bold;
+}
+.noticia-link:hover {
+    transform: translateY(-5px);
+    color: var(--rojos-1);
+}
+
+/*
+ -------> Galeria Main <-----------------------------------------
+*/
+.seccion-uno, .seccion-dos {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    gap: 2rem;
+}
+.seccion-uno-img {
+    height: 300px;
+    width: 500px;
+    border: 1px solid var(--azules-2);
+    background: var(--azules-2);
+}
+
+/*+++++++++++++++++++++++ Footer ++++++++++++++++++++++++++++++*/
+footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+    height: 150px;
+    background: var(--azules-4);
+    color: var(--rojos-1);
+}
+.pie-iconos {
+    display: flex;
+    gap: 1rem;
+}
+.pie-iconos a {
+    text-decoration: none;
+    color: var(--rojos-1);
+    font-size: var(--font-l);
+}
+.pie-iconos a:hover {
+    color: var(--amaril-2);
+}
+
+/*++++++++++++++++++++++++++++++++++++++++++
+  +                                        +
+  +                  Media Queries         +
+  +                                        +
+  ++++++++++++++++++++++++++++++++++++++++++*/
+  @media (min-width: 780px) {
+    /*++++++++++++++++ Main +++++++++++++++++*/
+    .navegador-secundario {
+        justify-content: flex-start;
+    }
+    .seccion-mision {
+        flex-direction: row;
+    }
+    .seccion-mision img {
+        flex: 2;
+    }
+    .seccion-vision {
+        flex-direction: row;
+    }
+    .seccion-vision img {
+        flex: 2;
+    }
+    .seccion-vision-reverse {
+        flex-direction: row-reverse;
+    }
+  }
+  @media (min-width: 1024px) {
+    /*++++++ Header ++++++++++*/
+    header {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 0 20px;
+    }
+    .titulo-pagina {
+        word-spacing: 2px;
+    }
+    .mi-menu {
+        gap: 1rem
+    }
+    .navegador-secundario {
+        justify-content: flex-start;
+    }
+    /*+++++++++++++++ Main +++++++++++++++*/
+    .seccion-eslogan {
+        background: url(../assets/images/hosting-horizontal.jpg) no-repeat center center / cover;
+    }
+    .seccion-mision {
+        flex-direction: row;
+    }
+    .seccion-mision img {
+        flex: 2;
+    }
+    .seccion-vision img {
+        flex: 2;
+    }
+    .seccion-vision-reverse {
+        flex-direction: row-reverse;
+    }
+    /*------------- Noticias ------------------------*/
+    .noticias-contenido {
+        width: 70vw;
+        height: 85vh;
+    }
+    .noticia-titulo {
+        width: 500px;
+        text-align: center;
+        display: block;
+        color: var(--background-color);
+        /*writing-mode: sideways-lr;*/
+        position: absolute;
+        left: 30%;
+        top: 50%;
+        font-size: clamp(1rem, 2vw, 1rem);
+    }
+
+  }
