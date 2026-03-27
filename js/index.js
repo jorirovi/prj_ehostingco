@@ -6,7 +6,7 @@ const mision = "<span class='sub-titulo'>Mision</span>: Brindar una infraestruct
 const $eslogan = document.getElementById('eslogan');
 const $mision = document.getElementById('mision');
 const $vision = document.getElementById('vision');
-const $vmContent = document.getElementById('visionmision')
+const $vmContent = document.getElementById('visionmision');
 const $imgVision = document.createElement('img');
 const $txtVision = document.createElement('p');
 const $imgMision = document.createElement('img');
@@ -22,10 +22,14 @@ $menumov.style.display = 'none';
 $eslogan.textContent = eslogan;
 $eslogan.style.color = '#fff';
 $vmContent.classList.add('seccion-mision-vision');
+$imgVision.id = "imgVision";
+$imgMision.id = "imgMision"
 $imgMision.src = "./assets/images/mision.jpg";
 $imgMision.alt = "mision";
 $imgMision.height = 300;
 $imgMision.width = 300;
+$txtMision.classList.add('textoM')
+$txtVision.classList.add('textoV')
 $txtMision.innerHTML = mision;
 $mision.append($imgMision, $txtMision);
 $imgVision.src = "./assets/images/vision.jpg";
@@ -44,25 +48,114 @@ window.addEventListener('scroll', () => {
     }
 });
 
+// Animaciones
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
-/*gsap.from("#eslogan", {
-x: -3000,
-duration: 1,
-ease: "power3.out",
-scrollTrigger: {
-    trigger: "#eslogan",
-    start: "top 50%", 
-}
-});*/
-
 let split = SplitText.create("#eslogan", {type: "words, chars"})
-split.chars.forEach(c => {
-    gsap.from(c, {
+
+split.chars.forEach((c, index) => {
+    let esloganTl = gsap.timeline()
+
+    esloganTl.from(c, {
         y: gsap.utils.random(-250, 250),
         x: gsap.utils.random(-500, 500),
-        delay: 1,
-        scale: 3
+        rotate: gsap.utils.random(-360, 360),
+        scale: gsap.utils.random(0, 2),
+        opacity: 0,
+        duration: 0.75,
+        ease: 'back.out',
+        delay: index * 0.01,
+    })
+    esloganTl.from(c, {
+        color: `rgb(${gsap.utils.random(0, 255)}, ${gsap.utils.random(0, 255)}, ${gsap.utils.random(0, 255)})`,
+        duration: 1
+    }, "-=.25")
+
+    c.addEventListener("mouseenter", charsHover)
+    let charsOriginalColor = window.getComputedStyle(c).color
+
+    function charsHover() {
+        gsap.timeline()
+        .to(c, {
+            y: gsap.utils.random(-50, 50),
+            x: gsap.utils.random(-50, 50),
+            rotate: gsap.utils.random(-90, 90),
+            scale: gsap.utils.random(0.5, 1.5),
+            duration: 0.05,
+            ease: 'back.out',
+            color: `rgb(${gsap.utils.random(0, 255)}, ${gsap.utils.random(0, 255)}, ${gsap.utils.random(0, 255)})`,
+            onStart: () => {
+                c.removeEventListener("mouseenter", charsHover)
+            }
+        })
+        .to(c, {
+            y: 0,
+            x: 0,
+            rotate: 0,
+            scale: 1,
+            duration: 0.05,
+            color: charsOriginalColor,
+            delay: 1,
+            onComplete: () => {
+                setTimeout(() => {
+                    c.addEventListener("mouseenter", charsHover)
+                }, 100)
+            }
+        })
+    }
+})
+
+let imagenV = document.getElementById('imgVision')
+let imagenM = document.getElementById('imgMision')
+let imagenesMTl = gsap.timeline()
+let imagenesVTl = gsap.timeline()
+let textoM = SplitText.create(".textoM", {type: "words"})
+let textoV = SplitText.create(".textoV", {type: "words"})
+
+gsap.to(imagenM, {
+    x: 0,
+    opacity: 1,
+    duration: 5,
+    ease: "back.out",
+    scrollTrigger: {
+        trigger: "#visionmision",
+        start: "-800px top",
+    }
+})
+textoM.words.forEach((word) => {
+    gsap.from(word, {
+        y: 50,
+        opacity: 1,
+        rotate: 360,
+        duration: 5,
+        ease: "back.out",
+        scrollTrigger: {
+            trigger: "#visionmision",
+            start: "-800px top",
+        }
+    })
+})
+gsap.to(imagenV, {
+    x: 0,
+    opacity: 1,
+    duration: 5,
+    ease: "back.out",
+    scrollTrigger: {
+        trigger: ".seccion-mision",
+        start: "top top",
+    }
+})
+textoV.words.forEach((word) => {
+    gsap.from(word, {
+        y: 50,
+        opacity: 1,
+        rotate: 360,
+        duration: 5,
+        ease: "back.out",
+        scrollTrigger: {
+            trigger: ".seccion-mision",
+            start: "top top",
+        }
     })
 })
 

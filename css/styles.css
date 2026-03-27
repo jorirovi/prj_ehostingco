@@ -113,6 +113,7 @@ main {
     text-align: center;
     padding: 0 5%;
     font-size: 50px;
+    width: 900px;
 }
 .seccion-mision-vision {
     flex-direction: column;
@@ -123,15 +124,20 @@ main {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 2rem;
+    gap: 5rem;
     margin-bottom: 100px;
 }
 .seccion-mision img {
-    flex: 1;
+    flex: 2;
     object-fit: cover;
+    width: 300px;
     height: 300px;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+    transform: translateX(-800px);
+    opacity: 0;
 }
-.seccion-mision p {
+.textoM {
     flex: 1;
     text-align: justify;
 }
@@ -145,15 +151,20 @@ main {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 2rem;
+    gap: 5rem;
     margin-bottom: 100px;
 }
 .seccion-vision img {
     flex: 1;
     object-fit: cover;
     height: 300px;
+    width: 300px;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+    transform: translateX(800px);
+    opacity: 0;
 }
-.seccion-vision p {
+.textoV{
     flex: 1;
     text-align: justify;
 }
@@ -307,11 +318,26 @@ footer {
         flex-direction: row;
     }
     .seccion-mision img {
-        flex: 2;
+        flex: 1;
+        height: 400px;
+        width: 500px;
+        
+    }
+    .seccion-mision p {
+        flex: 1;
+        width: 600px;
     }
     .seccion-vision img {
-        flex: 2;
+        flex: 1;
+        height: 400px;
+        width: 600px;
     }
+
+    .seccion-vision p {
+        flex: 1;
+        width: 600px;
+    }
+
     .seccion-vision-reverse {
         flex-direction: row-reverse;
     }
