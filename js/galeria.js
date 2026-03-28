@@ -30,7 +30,7 @@ async function obtenerServicios() {
         const $item = document.createElement('div')
         $item.classList.add('item')
         $item.setAttribute("data-title", servicio.nombre)
-        $item.setAttribute("data-secundary", servicio.preciomes)
+        $item.setAttribute("data-secondary", servicio.preciomes)
         $item.setAttribute("data-text", servicio.descripcion)
         const $imgServicio = document.createElement('img')
         $imgServicio.classList.add('img-servicio')
@@ -54,6 +54,122 @@ async function obtenerServicios() {
     $detalle.append($imgDetalle, $contenido)
     const $app = document.querySelector('.seccion-galeria')
     $app.appendChild($detalle)
+
+    //Animacion-galeria
+    gsap.registerPlugin(Flip)
+
+    const items = gsap.utils.toArray(".item")
+    //details = $detalle
+    //detailContent = $contenido
+    //detailImage = $imgDetalle
+    //deatailTitle = $titulo
+    //detailSecondary = $secundario
+    //detailDescription = $descripcion
+    let activeItem
+    gsap.set($contenido, {yPercent: -100})
+
+    function showDetails(item){
+        if (activeItem) {
+            return hideDetails()
+        }
+        let onLoad = () => {
+            Flip.fit($detalle, item, {
+                scale: true,
+                fitChild: $imgDetalle
+            })
+            const state = Flip.getState($detalle)
+            gsap.set($detalle, {clearProps: true})
+            gsap.set($detalle, {
+                xPercent: -50,
+                top: "50%",
+                yPercent: -50,
+                visibility: "visible",
+                overflow: "hidden"
+            })
+            Flip.from(state, {
+                dusration: .5,
+                ease: "power2.inOut",
+                scale: true,
+                onComplete: () => gsap.set($detalle, {overflow: "auto"})
+            })
+            .to($contenido, {yPercent: 0}, 0.2)
+
+            $imgDetalle.removeEventListener("load", onLoad)
+            document.addEventListener('click', hideDetails)
+        }
+        const data = item.dataset;
+        $imgDetalle.addEventListener("load", onLoad)
+        $imgDetalle.src = item.querySelector('.img-servicio').src
+        $titulo.innerText = data.title
+        $secundario.innerText = `Precio desde: ${data.secondary} EUR al mes`
+        $descripcion.innerText = data.text
+
+        gsap.to(items, {
+            opacity: 0.3,
+            stagger: {
+                amount: 0.7,
+                from: items.indexOf(item),
+                grid: "auto"
+            }
+        }).kill(item)
+        gsap.to(".seccion-galeria", {
+            backgroundcolor: "#888",
+            duration: 1,
+            delay: 0.3
+        })
+        activeItem = item
+    }
+
+    function hideDetails() {
+        document.removeEventListener('click', hideDetails)
+        gsap.set($detalle, {overflow: "hidden"})
+
+        const state = Flip.getState($detalle)
+
+        Flip.fit($detalle, activeItem, {
+            scale: true,
+            fitChild: $imgDetalle
+        })
+        const tl = gsap.timeline()
+        tl.set($detalle, {
+            overflow: "hidden"
+        }).to($contenido, {
+            yPercent: -100
+        }).to(items, {
+            opacity: 1,
+            stagger: {
+                amount: 0.7,
+                from: items.indexOf(activeItem),
+                grid: "auto"
+            }
+        }).to(".seccion-galeria", {
+            backgroundcolor: "#fff"
+        }, "<")
+
+        Flip.from(state, {
+            scale: true,
+            duration: 0.5,
+            delay: 0.2,
+            onInterrupt: () => tl.kill()
+        }).set($detalle, {
+            visibility: "hidden"
+        })
+        activeItem = null
+    }
+
+    gsap.utils.toArray(".item").forEach(item => item.addEventListener('click', () => showDetails(item)))
+
+    window.addEventListener('load', () => {
+        gsap.to('.seccion-galeria', {
+            autoAlpha: 1,
+            duration: 0.2
+        })
+        gsap.from('.item', {
+            autoAlpha: 1,
+            yPercent: 30,
+            stagger: 0.04
+        })
+    })
 }
 
 obtenerServicios()
