@@ -250,27 +250,27 @@ main {
 */
 
 .seccion-galeria {
-    display: grid;
+    display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 100vh;
-    margin-bottom: 100px;
+    height: 100%;
+    margin-bottom: 200px;
 }
 
 .img-servicio {
     width: 100%;
-    height: 400px;
+    height: 100%;
     object-fit: cover;
+    border-radius: 10px;
 }
 
 .galeria {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2% 3.5%;
+    gap: 1rem;
     padding: 10px;
-    width: 75vw;
-    height: 100vh;
+    width: 70vw;
+    height: 80%;
 }
 
 .item {
@@ -280,7 +280,7 @@ main {
 
 .detail {
   position: fixed;
-  top: 10px;
+  top: 20px;
   left: 50%;
   width: 90.1vmin;
   cursor: pointer;
@@ -298,7 +298,7 @@ main {
 }
 
 .detail .content {
-  background: #232323;
+  background: var(--azules-2);
   padding: 2rem 1.5rem;
   font-size: 1rem;
   box-sizing: border-box;
@@ -315,7 +315,8 @@ main {
 }
 
 .detail .secondary {
-  color: lightgray;
+  color: var(--rojos-1);
+  font-weight: bold;
 }
 
 .detail .description {
@@ -372,6 +373,10 @@ footer {
     .seccion-vision-reverse {
         flex-direction: row-reverse;
     }
+    /*Galeria*/
+    .galeria {
+        grid-template-columns: repeat(3, 1fr);
+    }
   }
   @media (min-width: 1024px) {
     /*++++++ Header ++++++++++*/
@@ -420,6 +425,7 @@ footer {
     .seccion-vision-reverse {
         flex-direction: row-reverse;
     }
+    
     /*------------- Noticias ------------------------*/
     .noticias-contenido {
         width: 70vw;
@@ -436,5 +442,8 @@ footer {
         top: 50%;
         font-size: clamp(1rem, 2vw, 1rem);
     }
-
+    /* Galeria */
+    .galeria {
+        grid-template-columns: repeat(3, 1fr);
+    }
   }

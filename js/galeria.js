@@ -56,7 +56,7 @@ async function obtenerServicios() {
     $app.appendChild($detalle)
 
     //Animacion-galeria
-    gsap.registerPlugin(Flip)
+    gsap.registerPlugin(Flip, ScrollTrigger)
 
     const items = gsap.utils.toArray(".item")
     //details = $detalle
@@ -87,7 +87,7 @@ async function obtenerServicios() {
                 overflow: "hidden"
             })
             Flip.from(state, {
-                dusration: .5,
+                duration: .5,
                 ease: "power2.inOut",
                 scale: true,
                 onComplete: () => gsap.set($detalle, {overflow: "auto"})
@@ -107,13 +107,13 @@ async function obtenerServicios() {
         gsap.to(items, {
             opacity: 0.3,
             stagger: {
-                amount: 0.7,
+                amount: 1,
                 from: items.indexOf(item),
                 grid: "auto"
             }
         }).kill(item)
-        gsap.to(".seccion-galeria", {
-            backgroundcolor: "#888",
+        gsap.to(".galeria", {
+            backgroundColor: "#888",
             duration: 1,
             delay: 0.3
         })
@@ -142,8 +142,8 @@ async function obtenerServicios() {
                 from: items.indexOf(activeItem),
                 grid: "auto"
             }
-        }).to(".seccion-galeria", {
-            backgroundcolor: "#fff"
+        }).to(".galeria", {
+            backgroundColor: "#D2CA9F"
         }, "<")
 
         Flip.from(state, {
@@ -167,7 +167,11 @@ async function obtenerServicios() {
         gsap.from('.item', {
             autoAlpha: 1,
             yPercent: 30,
-            stagger: 0.04
+            stagger: 0.04,
+            /*scrollTrigger: {
+                trigger: ".seccion-galeria",
+                start: "top top"
+            }*/
         })
     })
 }
