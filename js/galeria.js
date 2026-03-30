@@ -2,6 +2,7 @@ const $navSecundario = document.getElementById('navsecundario');
 const $menumov = document.getElementById('menumov');
 const $secImagen = document.getElementById('seccionuno');
 const $secGaleria = document.getElementById('galeria');
+gsap.registerPlugin(Flip, ScrollTrigger)
 
 itemsMenu.forEach(m => {
     const $a = document.createElement('a');
@@ -19,12 +20,24 @@ window.addEventListener('scroll', () => {
     }
 });
 
+gsap.from(".galeria-portada", {
+    x: -500,
+    color: "blue"
+})
+
+const estadoActual = Flip.getState(".galeria-portada")
+Flip.from(estadoActual, {
+    x: 0,
+    duration: 3,
+    color: "red",
+    scale: 5,
+    ease: "back.out"
+})
+
 async function obtenerServicios() {
     const url = '../data/servicios.json'
     const res = await fetch(url)
     const datos = await res.json()
-
-    console.log(datos.servicios)
     
     datos.servicios.forEach((servicio) => {
         const $item = document.createElement('div')
@@ -56,15 +69,8 @@ async function obtenerServicios() {
     $app.appendChild($detalle)
 
     //Animacion-galeria
-    gsap.registerPlugin(Flip, ScrollTrigger)
 
     const items = gsap.utils.toArray(".item")
-    //details = $detalle
-    //detailContent = $contenido
-    //detailImage = $imgDetalle
-    //deatailTitle = $titulo
-    //detailSecondary = $secundario
-    //detailDescription = $descripcion
     let activeItem
     gsap.set($contenido, {yPercent: -100})
 
@@ -168,10 +174,10 @@ async function obtenerServicios() {
             autoAlpha: 1,
             yPercent: 30,
             stagger: 0.04,
-            /*scrollTrigger: {
-                trigger: ".seccion-galeria",
+            scrollTrigger: {
+                trigger: ".titulo-galeria",
                 start: "top top"
-            }*/
+            }
         })
     })
 }

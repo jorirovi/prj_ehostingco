@@ -251,11 +251,18 @@ main {
 
 .seccion-galeria {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 100%;
     height: 100%;
-    margin-bottom: 200px;
+    margin-bottom: 100px;
+}
+
+.titulo-galeria {
+    color: var(--rojos-1);
+    font-weight: bold;
+    margin-bottom: 50px;
 }
 
 .img-servicio {
