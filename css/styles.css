@@ -346,6 +346,40 @@ main {
   line-height: 1.5;
 }
 
+/*+++++++++++++++++++++++ PRESUPUESTO +++++++++++++++++++++++++*/
+.presupuesto-formulario {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    height: 100%;
+    margin: 0 auto;
+}
+.presupuesto-formulario form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    gap: .5rem;
+}
+.presupuesto-formulario .frm-datos, 
+.presupuesto-formulario .frm-presupuesto {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    width: 85%;
+    padding: 10px 10px;
+    gap: 1rem;
+    border: 3px double var(--rojos-1)
+}
+.presupuesto-formulario legend {
+    color: var(--rojos-1);
+    font-weight: bold;
+}
+
 
 /*+++++++++++++++++++++++ Footer ++++++++++++++++++++++++++++++*/
 footer {
