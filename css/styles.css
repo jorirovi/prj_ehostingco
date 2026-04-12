@@ -365,7 +365,8 @@ main {
     gap: .5rem;
 }
 .presupuesto-formulario .frm-datos, 
-.presupuesto-formulario .frm-presupuesto {
+.presupuesto-formulario .frm-presupuesto,
+.presupuesto-formulario .frm-envio {
     display: flex;
     flex-direction: column;
     align-items: start;
