@@ -2,6 +2,8 @@ const $navSecundario = document.getElementById('navsecundario');
 const $menumov = document.getElementById('menumov');
 const $secImagen = document.getElementById('seccionuno');
 const $secGaleria = document.getElementById('galeria');
+const $subtituloGaleria = document.querySelector('.galeria-subtitulo')
+$subtituloGaleria.textContent = "Nuestros servicios se ajustan a tus necesidades"
 gsap.registerPlugin(Flip, ScrollTrigger)
 
 itemsMenu.forEach(m => {
