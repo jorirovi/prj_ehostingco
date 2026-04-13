@@ -381,6 +381,12 @@ main {
     font-weight: bold;
 }
 
+.presupuesto-contenedor-subserv {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
 
 /*+++++++++++++++++++++++ Footer ++++++++++++++++++++++++++++++*/
 footer {

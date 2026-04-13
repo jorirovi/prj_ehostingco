@@ -1,13 +1,13 @@
 //funcion para crear select
 export function crearSelect(atributos, opciones) {
     const select = document.createElement('select')
-    Object.entries(atributos).forEach((key, value) => {
+    Object.entries(atributos).forEach(([key, value]) => {
         select[key] = value
     })
 
     const opcionInicial = document.createElement('option')
     opcionInicial.value = ""
-    opcionInicial.text = "Seleccione un Servicio"
+    opcionInicial.textContent = "Seleccione un Servicio"
     opcionInicial.disabled = false
     opcionInicial.selected = true
     select.appendChild(opcionInicial)
@@ -20,6 +20,14 @@ export function crearSelect(atributos, opciones) {
     })
 
     return select
+}
+//Funcion para crear los checkbox
+export function crearInput(atributos) {
+    const input = document.createElement('input')
+    Object.entries(atributos).forEach(([key, value]) => {
+        input[key] = value
+    })
+    return input
 }
 
 //funcion para cargar Servicios
