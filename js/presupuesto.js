@@ -29,10 +29,10 @@ async function cargarSelect() {
         console.log(subServicios)
         $contPlazos.innerHTML = ""
         const plazosTexto = [
-            "De 1 a 5 meses 0% de descuento sobre el costo del servicio",
-            "De 6 a 11 meses 10% de descuento sobre el costo del servicio",
-            "De 12 a 19 meses 20% de descuento sobre el costo del servicio",
-            "De 20 a 24 meses 30% de descuento sobre el costo del servicio"
+            "De 1 a 5 meses 0%",
+            "De 6 a 11 meses 10%",
+            "De 12 a 19 meses 20%",
+            "De 20 a 24 meses 30%"
         ]
         const $listaPlazos = document.createElement('ul')
         plazosTexto.forEach((plazo, index, array) => {
