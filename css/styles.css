@@ -371,7 +371,7 @@ main {
     flex-direction: column;
     align-items: start;
     justify-content: center;
-    width: 85%;
+    width: 95%;
     padding: 10px 10px;
     gap: 1rem;
     border: 3px double var(--rojos-1)
@@ -380,12 +380,34 @@ main {
     color: var(--rojos-1);
     font-weight: bold;
 }
+.presupuesto-cont-plazos {
+    width: 100%;
+}
+
+.presupuesto-cont-plazos ul {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    list-style-position: inside;
+}
 
 .presupuesto-contenedor-subserv {
     display: flex;
+    flex-direction: column;
     justify-content: start;
-    align-items: center;
+    align-items: flex-start;
+    width: 80%;
+    gap: .3rem;
 }
+.presupuesto-label-subSer {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.presupuesto-label-subSer .presupuesto-nom-subservicio {
+    font-size: var(--font-m);
+}
+
 
 
 /*+++++++++++++++++++++++ Footer ++++++++++++++++++++++++++++++*/
@@ -509,5 +531,13 @@ footer {
     /* Galeria */
     .galeria {
         grid-template-columns: repeat(3, 1fr);
+    }
+    /* Presupuesto*/
+    .presupuesto-contenedor-subserv {
+        flex-direction: row;
+        width: 100%;
+    }
+    .presupuesto-label-subSer .presupuesto-nom-subservicio {
+        font-size: var(--font-s);
     }
   }

@@ -8,7 +8,7 @@ export function crearSelect(atributos, opciones) {
     const opcionInicial = document.createElement('option')
     opcionInicial.value = ""
     opcionInicial.textContent = "Seleccione un Servicio"
-    opcionInicial.disabled = false
+    opcionInicial.disabled = true
     opcionInicial.selected = true
     select.appendChild(opcionInicial)
 
