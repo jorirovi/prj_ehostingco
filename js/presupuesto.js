@@ -1,46 +1,52 @@
-import { crearInput, crearSelect, obtnerServicios } from "./helpers/presupuestohelper.js"
+import { crearInput, crearSelect, obtenerDescuentos, obtnerServicios } from "./helpers/presupuestohelper.js"
 
 const $fsetPresupuesto = document.querySelector(".frm-presupuesto")
 
+//funcion para cargar el contenido del presupeusto
 async function cargarSelect() {
     //Carga de datos
     const servicios = await obtnerServicios()
+    const descuentos = await obtenerDescuentos()
     
+    const $contServicios = document.createElement('div')
+    const $lblServicios = document.createElement('label')
+    $contServicios.classList.add('presupuesto-contenedor-Servicios')
+    $lblServicios.textContent = "Seleccione el servicio requerido:"
     //carga las opciones del Select
     const opciones = await servicios.servicios.map(item => ({
         value: item.id,
         texto: item.nombre
     }))
 
-    //crea el select
+    //crea el select para los servicios ofrecidos
     const $slcServicio = crearSelect({
         id: 'pais',
         name: 'pais'
     }, opciones)
-    
-    $fsetPresupuesto.appendChild($slcServicio)
+    $contServicios.append($lblServicios, $slcServicio)
+    $fsetPresupuesto.appendChild($contServicios)
     const $contSubServicios = document.createElement('div')
     const $contPlazos = document.createElement('div')
     $contSubServicios.classList.add('presupuesto-contenedor-subserv')
     $contPlazos.classList.add('presupuesto-cont-plazos')
 
-    $slcServicio.addEventListener("change", () => {
+    $slcServicio.addEventListener("change", async () => {
         const subServicios = servicios.planes_adicionales.filter(item => item.idservicio === Number($slcServicio.value))
         console.log(subServicios)
         $contPlazos.innerHTML = ""
-        const plazosTexto = [
-            "De 1 a 5 meses 0%",
-            "De 6 a 11 meses 10%",
-            "De 12 a 19 meses 20%",
-            "De 20 a 24 meses 30%"
-        ]
-        const $listaPlazos = document.createElement('ul')
-        plazosTexto.forEach((plazo, index, array) => {
-            const $itemPlazo = document.createElement('li')
-            $itemPlazo.textContent = plazo
-            $listaPlazos.appendChild($itemPlazo)
-        })
-        $contPlazos.appendChild($listaPlazos)
+        const $lblPlazos = document.createElement('label')
+        $lblPlazos.textContent = 'Seleccione los plazos requeridos para descuento:'
+        //cargar las opciones del select de Descuentos
+        const opcioneDes = await descuentos.descuentos.map(item => ({
+            value: item.id,
+            texto: item.plazo
+        }))
+        //crear select para los plazos
+        const $slcPlazos = crearSelect({
+            id: 'plazos',
+            name: 'plazos'
+        }, opcioneDes)
+        $contPlazos.append($lblPlazos, $slcPlazos)
         $contSubServicios.innerHTML = ""
         subServicios[0].items.forEach((item, index, array) => {
             const $lblSubServicios = document.createElement('label')

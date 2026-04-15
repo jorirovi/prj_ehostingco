@@ -7,7 +7,7 @@ export function crearSelect(atributos, opciones) {
 
     const opcionInicial = document.createElement('option')
     opcionInicial.value = ""
-    opcionInicial.textContent = "Seleccione un Servicio"
+    opcionInicial.textContent = "Seleccione una opcion"
     opcionInicial.disabled = true
     opcionInicial.selected = true
     select.appendChild(opcionInicial)
@@ -37,7 +37,7 @@ export async function obtnerServicios() {
         const response = await fetch(url)
         const data = await response.json()
         if (!response.ok) {
-            throw new Error("No se pudieron optener los servicios")  
+            throw new Error("No se pudieron obtener los servicios")  
         }
         return data
     } catch (err) {
@@ -45,3 +45,19 @@ export async function obtnerServicios() {
         console.error(err)
     }
 }
+
+//Funcion para cargar Descuentos
+export async function obtenerDescuentos() {
+    const url = '../../data/plazos.json'
+    try {
+        const response = await fetch(url)
+        const data = await response.json()
+        if (!response.ok) {
+            throw new Error("No se pudieron obtner los descuentos")
+        }
+        return data
+    } catch (err) {
+        alert (err)
+        console.error(err)
+    }
+} 
