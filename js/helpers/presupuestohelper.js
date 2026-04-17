@@ -16,6 +16,7 @@ export function crearSelect(atributos, opciones) {
         const option = document.createElement("option")
         option.value = opcion.value
         option.textContent = opcion.texto
+        option.dataset.cost = opcion.costo
         select.appendChild(option)
     })
 
