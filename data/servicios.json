@@ -56,26 +56,21 @@
             "items" : [
                 {
                     "id": 1,
-                    "nombre": "Dispositivo adicional",
-                    "costM": 5
-                },
-                {
-                    "id": 2,
                     "nombre":"Monitoreo en tiempo real",
                     "costM": 6
                 },
                 {
-                    "id": 3,
+                    "id": 2,
                     "nombre": "Alertas Automaticas",
                     "costM": 8
                 },
                 {
-                    "id": 4,
+                    "id": 3,
                     "nombre": "Integración API",
                     "costM": 20
                 },
                 {
-                    "id": 5,
+                    "id": 4,
                     "nombre": "Soporte prioritario",
                     "costM": 12
                 }

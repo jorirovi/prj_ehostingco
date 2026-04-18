@@ -381,6 +381,29 @@ main {
     gap: 1rem;
     border: 3px double var(--rojos-1)
 }
+.presupuesto-contenedor-campos {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: .5rem;
+    padding-bottom: 5px;
+}
+.presupuesto-etiqueta-campo {
+    font-size: var(--font-m);
+}
+.presupuesto-contenedor-campos input {
+    width: 300px;
+    border-radius: 5px;
+    border: none;
+    height: 20px;
+    padding-left: 5px;
+}
+.presupuesto-contenedor-campos input:focus {
+    border: 2px solid var(--rojos-1);
+    outline: none;
+}
+
 .presupuesto-formulario legend {
     color: var(--rojos-1);
     font-weight: bold;
@@ -420,15 +443,52 @@ main {
     min-height: 120px;
     gap: .3rem;
 }
-.presupuesto-label-subSer {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-.presupuesto-label-subSer .presupuesto-nom-subservicio {
+
+.presupuesto-titulo-susbservicios,
+.presupuesto-servicio-label,
+.presupuesto-plazos-label {
     font-size: var(--font-m);
+    font-weight: bold;
+    padding-bottom: 5px;
 }
 
+.presupuesto-cont-costos {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    align-items: flex-start;
+    justify-content: center;
+
+}
+.presupeuestos-lbl {
+    display: flex;
+    justify-content: space-between;
+    font-size: var(--font-m);
+    font-weight: bold;
+    width: 250px;
+}
+
+
+.presupuesto-txt {
+    border: none;
+    background: none;
+    color: var(--rojos-1);
+    font-weight: bold;
+    font-size: var(--font-m);
+    width: 70px;
+    padding-left: 5px;
+}
+
+.presupuesto-contenedor-opcioneSS {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: .5rem;
+}
+.presupuesto-label-subSer {
+    width: 222px;
+    font-size: var(--font-m);
+}
 
 
 /*+++++++++++++++++++++++ Footer ++++++++++++++++++++++++++++++*/
@@ -555,13 +615,21 @@ footer {
     }
     /* Presupuesto*/
     .presupuesto-contenedor-subserv {
-        flex-direction: row;
         width: 100%;
         min-height: 20px;
     }
     .frm-presupuesto {
         min-height: 300px;
     }
+    .presupuesto-contenedor-campos {
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    .presupuesto-etiqueta-campo {
+        width: 110px;
+    }
+    
     .presupuesto-contenedor-Servicios {
         display: flex;
         flex-direction: row;
@@ -571,7 +639,7 @@ footer {
         gap: 1rem;
     }
     .presupuesto-contenedor-Servicios label {
-        width: 333px;
+        width: 350px;
         font-size: var(--font-m);
     }
     .presupuesto-cont-plazos {
@@ -583,10 +651,15 @@ footer {
         gap: 1rem;
     }
     .presupuesto-cont-plazos label {
-        width: 333px;
+        width: 350px;
         font-size: var(--font-m);
     }
+    
     .presupuesto-label-subSer .presupuesto-nom-subservicio {
         font-size: var(--font-m);
+    }
+
+    .presupuesto-cont-costos {
+        flex-direction: row;
     }
   }

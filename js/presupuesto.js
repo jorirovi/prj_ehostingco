@@ -1,94 +1,272 @@
-import { crearInput, crearSelect, obtenerDescuentos, obtnerServicios } from "./helpers/presupuestohelper.js"
+import { Presupuesto } from "./helpers/presupuestohelper.js"
 
-const $fsetPresupuesto = document.querySelector(".frm-presupuesto")
+//Llamaremos a los fieldset=fs
+const $fsDatos = document.querySelector('.frm-datos')
+const $fsPresupuesto = document.querySelector('.frm-presupuesto')
+const $fsEnvio = document.querySelector('.frm-envio')
 
-//funcion para cargar el contenido del presupeusto
+//#region fildset de Datos
+//creamos los div que contendran lod labels y inputs para el fieldset de datos-personales
+const $divNombre = Presupuesto.crearDiv({
+    className: "presupuesto-contenedor-campos"
+})
+const $divApellido = Presupuesto.crearDiv({
+    className: "presupuesto-contenedor-campos"
+})
+const $divTelefono = Presupuesto.crearDiv({
+    className: "presupuesto-contenedor-campos"
+})
+const $divEmail = Presupuesto.crearDiv({
+    className: "presupuesto-contenedor-campos"
+})
+
+//creamos los labels
+const $lblNombre = Presupuesto.crearLabel({
+    htmlFor: "nombre",
+    className: "presupuesto-etiqueta-campo"
+}, "Nombre:")
+const $lblApellido = Presupuesto.crearLabel({
+    htmlFor: "apellido",
+    className: "presupuesto-etiqueta-campo"
+}, "Apellido:")
+const $lblTelefono = Presupuesto.crearLabel({
+    htmlFor: "tel",
+    className: "presupuesto-etiqueta-campo"
+}, "N. de Telefono:")
+const $lblEmail = Presupuesto.crearLabel({
+    htmlFor: "email",
+    className: "presupuesto-etiqueta-campo"
+}, "Email:")
+
+
+//cramos los inputs
+const $inpNombre = Presupuesto.crearInput({
+    id: 'nombre',
+    type: 'text',
+    name: 'nombre',
+    placeholder: 'Indique su Nombre',
+    title: "Formato de nombre incorrecto",
+    pattern: "^[A-Za-zÑñÁáÉéÍíÓóÚúÜü]+$",
+    maxLength: "15",
+    required: true
+})
+const $inpApellido = Presupuesto.crearInput({
+    id: 'apellido',
+    type: 'text',
+    name: 'apellido',
+    placeholder: 'Indique su Apellido',
+    title: "Formato de apellido incorrecto",
+    pattern: "^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$",
+    maxLength: "30",
+    required: true
+})
+const $inpTelefono = Presupuesto.crearInput({
+    id: 'tel',
+    type: 'text',
+    name: 'tel',
+    autocomplete: 'tel',
+    placeholder: 'Indique su N de Telefono',
+    title: "Formato de Telefono incorrecto",
+    pattern: "^[6789]\d{8}$",
+    maxLength: "9",
+    required: true
+})
+const $inpEmail = Presupuesto.crearInput({
+    id: 'email',
+    type: 'email',
+    name: 'email',
+    autocomplete: 'email',
+    placeholder: 'Indique su Email',
+    title: "Formato de Email incorrecto",
+    required: true
+})
+
+$divNombre.append($lblNombre, $inpNombre)
+$divApellido.append($lblApellido, $inpApellido)
+$divTelefono.append($lblTelefono, $inpTelefono)
+$divEmail.append($lblEmail, $inpEmail)
+
+$fsDatos.append($divNombre, $divApellido, $divTelefono, $divEmail)
+//#endregion
+
+//#region Fildset de Presupuesto
+//Esta funcion es la encargada de cargar todo el fildset y logica del fildset de presupuesto
 async function cargarSelect() {
-    //Carga de datos
-    const servicios = await obtnerServicios()
-    const descuentos = await obtenerDescuentos()
-    
-    const $contServicios = document.createElement('div')
-    const $lblServicios = document.createElement('label')
-    $contServicios.classList.add('presupuesto-contenedor-Servicios')
-    $lblServicios.textContent = "Seleccione el servicio requerido:"
-    //carga las opciones del Select
-    const opciones = await servicios.servicios.map(item => ({
+    //cargamos datos de los json
+    //json de servicios
+    const servicios = await Presupuesto.obtenerServicios()
+    //json de descuentos
+    const descuentos = await Presupuesto.obtenerDescuentos()
+    //contenedores
+    const $contServicios = Presupuesto.crearDiv({
+        className: "presupuesto-contenedor-Servicios"
+    })
+    const $contSubServicios = Presupuesto.crearDiv({
+        className: "presupuesto-contenedor-subserv"
+    })
+    const $contPlazos = Presupuesto.crearDiv({
+        className: "presupuesto-cont-plazos"
+    })
+    const $contCostos = Presupuesto.crearDiv({
+        className: "presupuesto-cont-costos"
+    })
+    //labels y select para servicios
+    const $lblServicios = Presupuesto.crearLabel({
+        htmlFor: "servicio",
+        className: "presupuesto-servicio-label"
+    }, "Seleccione el servicio requerido:")
+    const opciones = servicios.servicios.map(item => ({
         value: item.id,
         texto: item.nombre,
-        costo: item.preciomes
+        costo: item.preciomes,
     }))
-
-    //crea el select para los servicios ofrecidos
-    const $slcServicio = crearSelect({
+    const $slcServicio = Presupuesto.crearSelect({
         id: 'servicio',
         name: 'servicio'
     }, opciones)
+    //labels y select para descuentos
+     const $lblPlazos = Presupuesto.crearLabel({
+        htmlFor: "plazo",
+        className: "presupuesto-plazos-label"
+     }, "Seleccione los plazos requeridos para descuento:")
+     const opcioneDes = descuentos.descuentos.map(item => ({
+        value: item.id,
+        texto: item.plazo,
+        costo: item.descuento
+    }))
+    const $slcPlazos = Presupuesto.crearSelect({
+        id: 'plazo',
+        name: 'plazo'
+    }, opcioneDes)
+    $slcPlazos.disabled = true
+    const $lblCostServ = Presupuesto.crearLabel({
+        htmlFor: "costServicio",
+        className: "presupeuestos-lbl"
+    }, "Costo Servicio:")
+    const $txtCostServ = Presupuesto.crearInput({
+        id: "costServicio",
+        type: "number",
+        readOnly: true,
+        className: "presupuesto-txt",
+        value: 0
+    })
+    const $lblCostSS = Presupuesto.crearLabel({
+        htmlFor: "costSS",
+        className: "presupeuestos-lbl"
+    }, "Costo Sub-Servicios:")
+    const $txtCostSS = Presupuesto.crearInput({
+        id: "costSS",
+        type: "number",
+        readOnly: true,
+        className: "presupuesto-txt",
+        value: 0
+    })
+    const $lblCostoTotal = Presupuesto.crearLabel({
+        htmlFor: "costoTotal",
+        className: "presupeuestos-lbl"
+    }, "Costo Total:")
+    const $txtCostoTotal = Presupuesto.crearInput({
+        id: "costoTotal",
+        type: "number",
+        readOnly: true,
+        className: "presupuesto-txt",
+        value: 0
+    })
     $contServicios.append($lblServicios, $slcServicio)
-    $fsetPresupuesto.appendChild($contServicios)
-    const $contSubServicios = document.createElement('div')
-    const $contPlazos = document.createElement('div')
-    $contSubServicios.classList.add('presupuesto-contenedor-subserv')
-    $contPlazos.classList.add('presupuesto-cont-plazos')
+    $lblCostServ.appendChild($txtCostServ)
+    $lblCostSS.appendChild($txtCostSS)
+    $lblCostoTotal.appendChild($txtCostoTotal)
+    $contCostos.append($lblCostServ, $lblCostSS, $lblCostoTotal)
+    $contPlazos.append($lblPlazos, $slcPlazos)
+    $fsPresupuesto.append($contServicios, $contSubServicios, $contPlazos, $contCostos)
 
-    $slcServicio.addEventListener("change", async (e) => {
+    let costoServicio = 0
+    let descuentoPorcentaje = 0
+    let totalCostoSS = 0
+    let nomSubser = ""
+    let costoTotal = 0
+    let porcetajeAplicado = 0
+
+    $slcServicio.addEventListener("change", (e) => {
         const idServ = Number(e.target.value)
-        const subServicios = servicios.planes_adicionales.find(item => item.idservicio === idServ)
-        console.log(subServicios)
-        $contPlazos.innerHTML = ""
-        const $lblPlazos = document.createElement('label')
-        $lblPlazos.textContent = 'Seleccione los plazos requeridos para descuento:'
-        //cargar las opciones del select de Descuentos
-        const opcioneDes = await descuentos.descuentos.map(item => ({
-            value: item.id,
-            texto: item.plazo,
-            costo: item.descuento
-        }))
-
-        //variable para almacenar el costo del servicio seleccionado
-        let costoServicio = 0
+        const subServicio = servicios.planes_adicionales.find(item => item.idservicio === idServ)
         const selectedOption = e.target.selectedOptions[0]
-        costoServicio = Number(selectedOption.dataset.cost)
-        console.log(costoServicio)
+        costoServicio = Number(selectedOption.dataset.cost) || 0
+        nomSubser = selectedOption.textContent
+        $slcPlazos.disabled = true
 
-        //crear select para los plazos
-        const $slcPlazos = crearSelect({
-            id: 'plazos',
-            name: 'plazos'
-        }, opcioneDes)
-        $contPlazos.append($lblPlazos, $slcPlazos)
+        descuentoPorcentaje = 0
+        totalCostoSS = 0
+        costoTotal = 0
+        porcetajeAplicado = 0
+        $txtCostServ.value = 0
+        $txtCostSS.value = 0
+        $txtCostoTotal.value = 0
+        $slcPlazos.selectedIndex = 0
         $contSubServicios.innerHTML = ""
-        subServicios.items.forEach((item, index, array) => {
-            const $lblSubServicios = document.createElement('label')
-            $lblSubServicios.classList.add('presupuesto-label-subSer')
-            const $chkSubServicios = crearInput({
+        if (!subServicio) return
+
+        const $pTextoSubServicio = Presupuesto.crearParrafo({
+            className: "presupuesto-titulo-susbservicios"
+        }, "Seleccione el/los Sub-Servicio(s):")
+
+        $contSubServicios.appendChild($pTextoSubServicio)
+        subServicio.items.forEach(item => {
+            const $conteOpciones = Presupuesto.crearDiv({
+                className: "presupuesto-contenedor-opcioneSS"
+            })
+            const $lblSubServicios = Presupuesto.crearLabel({
+                htmlFor: "subservicio",
+                className: "presupuesto-label-subSer"
+            }, item.nombre)
+            const $chkSubServicios = Presupuesto.crearInput({
+                id: 'subservicio',
                 type: 'checkbox',
                 name: 'subservicios',
                 value: item.id,
             })
             $chkSubServicios.dataset.costm = item.costM
-            const $spanServicio = document.createElement('span')
-            $spanServicio.classList.add('presupuesto-nom-subservicio')
-            $spanServicio.textContent = `${item.nombre}`
-            $lblSubServicios.append($chkSubServicios, $spanServicio)
-            $contSubServicios.appendChild($lblSubServicios)
-            $fsetPresupuesto.append($contPlazos, $contSubServicios)
-
-            //variable para calculo de total de los sub-servicios seleccionados
-            let totalCostoSS = 0
-            $contSubServicios.addEventListener("change", (e) => {
-                if(e.target.type === "checkbox") {
-                    const costoMensual = Number(e.target.dataset.costm)
-                    if(e.target.checked) {
-                        totalCostoSS += costoMensual
-                    } else {
-                        totalCostoSS -= costoMensual
-                    }
-                }
-            })
+            
+            $conteOpciones.append($lblSubServicios, $chkSubServicios)
+            $contSubServicios.appendChild($conteOpciones)
         })
+        $txtCostServ.value = costoServicio
+        costoTotal += costoServicio
+        $txtCostoTotal.value = costoTotal
     })
+
+    $contPlazos.addEventListener("change", (e) => {
+        if (e.target.id !== "plazo") return
+        const selectOption = e.target.selectedOptions[0]
+        descuentoPorcentaje = Number(selectOption.dataset.cost) || 0
+        const checkboxes = $contSubServicios.querySelectorAll('input[type="checkbox"]')
+        checkboxes.forEach(chk => {
+            chk.disabled = true
+        })
+        porcetajeAplicado = 0
+        costoTotal = costoServicio + totalCostoSS
+        porcetajeAplicado = costoTotal * descuentoPorcentaje
+        costoTotal = costoTotal - porcetajeAplicado
+        $txtCostoTotal.value = costoTotal
+    })
+
+    $contSubServicios.addEventListener("change", (e) => {
+        if (e.target.type !== "checkbox") return
+        $slcPlazos.disabled = false
+        const costoMensual = Number(e.target.dataset.costm) || 0
+        if (e.target.checked) {
+            totalCostoSS += costoMensual
+            costoTotal += costoMensual
+        } else {
+            totalCostoSS -= costoMensual
+            costoTotal -= costoMensual
+        }
+        $txtCostSS.value = totalCostoSS
+        $txtCostoTotal.value = costoTotal
+    })
+    
+   
+
 }
-
 cargarSelect()
-
+//#endregion
