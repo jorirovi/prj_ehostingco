@@ -171,7 +171,7 @@ export class Presupuesto {
                     $span.classList.remove("presupuesto-dp-error-ocultar")
                 } else {
                     $span.textContent = ""
-                    $span.classList.add("presupuesto-dp-error-ocultar")
+                    $span.classList.add("presupuesto-dp-error", "presupuesto-dp-error-ocultar")
                 }
             })
             
