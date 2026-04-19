@@ -264,9 +264,34 @@ async function cargarSelect() {
         $txtCostSS.value = totalCostoSS
         $txtCostoTotal.value = costoTotal
     })
-    
-   
-
 }
 cargarSelect()
+//#endregion
+//#region envio de formulario
+const $lblPermisoEnvio = Presupuesto.crearLabel({
+    htmlFor: "permiso",
+    className: "presupeuestos-lbl"
+}, "¿Autoriza el tratamiento de información?" )
+const $chkPermisoEnvio = Presupuesto.crearInput({
+    id: "permiso",
+    name: "permiso",
+    type: "checkbox",
+    required: true
+})
+const $contBotones = Presupuesto.crearDiv({
+    className: "presupuesto-cont-btn"
+})
+const $btnEnviar = Presupuesto.crearInput({
+    type: "submit",
+    value: "Enviar",
+    className: "presupuesto-btn"
+})
+const $btnReset = Presupuesto.crearInput({
+    type: "reset",
+    value: "Borrar",
+    className: "presupuesto-btn"
+})
+$lblPermisoEnvio.appendChild($chkPermisoEnvio)
+$contBotones.append($btnEnviar, $btnReset)
+$fsEnvio.append($lblPermisoEnvio, $contBotones)
 //#endregion

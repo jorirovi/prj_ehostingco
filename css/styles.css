@@ -376,7 +376,7 @@ main {
     flex-direction: column;
     align-items: start;
     justify-content: center;
-    width: 95%;
+    width: 90%;
     padding: 5px 5px;
     gap: 1rem;
     border: 3px double var(--rojos-1)
@@ -391,6 +391,7 @@ main {
 }
 .presupuesto-etiqueta-campo {
     font-size: var(--font-m);
+    font-weight: bold;
 }
 .presupuesto-contenedor-campos input {
     width: 300px;
@@ -488,6 +489,27 @@ main {
 .presupuesto-label-subSer {
     width: 222px;
     font-size: var(--font-m);
+}
+.presupuesto-cont-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding-bottom: 5px;
+}
+
+.presupuesto-btn {
+    width: 130px;
+    height: 30px;
+    border: none;
+    border-radius: 5px;
+    background: var(--azules-4);
+    color: var(--background-color);
+}
+.presupuesto-btn:hover {
+    background: var(--background-color);
+    color: var(--azules-4);
+    cursor: pointer;
 }
 
 
@@ -616,7 +638,8 @@ footer {
     /* Presupuesto*/
     .presupuesto-contenedor-subserv {
         width: 100%;
-        min-height: 20px;
+        min-height: 150px;
+        justify-content: center;
     }
     .frm-presupuesto {
         min-height: 300px;
@@ -661,5 +684,9 @@ footer {
 
     .presupuesto-cont-costos {
         flex-direction: row;
+    }
+
+    .presupeuestos-lbl {
+        justify-content: left;
     }
   }
