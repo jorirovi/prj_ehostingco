@@ -95,4 +95,87 @@ export class Presupuesto {
         p.textContent = texto
         return p
     }
+
+    //Validaciones
+    static validacionDatosPersonales() {
+        const fsDatosPersonales = document.querySelector('.frm-datos')
+        const inputsDP = document.querySelectorAll('.frm-datos [required]')
+        
+        inputsDP.forEach((input) => {
+            let $span = document.getElementById(`error-${input.name}`)
+            if (!$span) {
+                const $span = document.createElement('span')
+                $span.id = `error-${input.name}`
+                $span.classList.add("presupuesto-dp-error", "presupuesto-dp-error-ocultar")
+                input.insertAdjacentElement('afterend', $span)
+            }
+        })
+
+        inputsDP.forEach((input) => {
+            input.addEventListener("input", (e) => {
+                this.validarCampo(input)
+            })
+            input.addEventListener("blur", (e) => {
+                this.validarCampo(input)
+            })
+        })
+    }
+    static validarCampo(input) {
+        const $span = document.getElementById(`error-${input.name}`);
+        if (input.validity.valueMissing) {
+            $span.textContent = "Este campo es obligatorio"
+            $span.classList.remove("presupuesto-dp-error-ocultar")
+        } else if (input.validity.patternMismatch) {
+            $span.textContent = input.title
+            $span.classList.remove("presupuesto-dp-error-ocultar")
+        } else {
+            $span.textContent = ""
+            $span.classList.add("presupuesto-dp-error-ocultar")
+        }
+    }
+
+    static validarCamposObligatorios() {
+        const inputsP = document.querySelectorAll('.frm-presupuesto [required]')
+        const inputsE = document.querySelectorAll('.frm-envio [required]')
+
+        console.log(inputsP.length)
+        inputsP.forEach((input) => {
+            let $span = document.getElementById(`error-${input.name}`)
+            if (!$span) {
+                const $span = document.createElement('span')
+                $span.id = `error-${input.name}`
+                $span.classList.add("presupuesto-dp-error", "presupuesto-dp-error-ocultar")
+                input.insertAdjacentElement('afterend', $span)
+            }
+        })
+        inputsE.forEach((input) => {
+            let $span = document.getElementById(`error-${input.name}`)
+            if (!$span) {
+                const $span = document.createElement('span')
+                $span.id = `error-${input.name}`
+                $span.classList.add("presupuesto-dp-error", "presupuesto-dp-error-ocultar")
+                input.insertAdjacentElement('afterend', $span)
+            }
+        })
+
+        inputsP.forEach((input) => {
+
+            this.validarCampo(input)
+        })
+
+        inputsE.forEach((input) => {
+            input.addEventListener("change", (e) => {
+                const $span = document.getElementById(`error-${input.name}`)
+                if (!e.target.checked) {   
+                    $span.textContent = 'campo obligatorio'
+                    $span.classList.remove("presupuesto-dp-error-ocultar")
+                } else {
+                    $span.textContent = ""
+                    $span.classList.add("presupuesto-dp-error-ocultar")
+                }
+            })
+            
+        })
+        
+    }
 }

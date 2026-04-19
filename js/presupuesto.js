@@ -1,6 +1,7 @@
 import { Presupuesto } from "./helpers/presupuestohelper.js"
 
 //Llamaremos a los fieldset=fs
+const $formulario = document.querySelector('.frm-contacto')
 const $fsDatos = document.querySelector('.frm-datos')
 const $fsPresupuesto = document.querySelector('.frm-presupuesto')
 const $fsEnvio = document.querySelector('.frm-envio')
@@ -67,8 +68,8 @@ const $inpTelefono = Presupuesto.crearInput({
     autocomplete: 'tel',
     placeholder: 'Indique su N de Telefono',
     title: "Formato de Telefono incorrecto",
-    pattern: "^[6789]\d{8}$",
-    maxLength: "9",
+    pattern: "^[6-9][0-9]{8}$",
+    maxLength: 9,
     required: true
 })
 const $inpEmail = Presupuesto.crearInput({
@@ -78,6 +79,7 @@ const $inpEmail = Presupuesto.crearInput({
     autocomplete: 'email',
     placeholder: 'Indique su Email',
     title: "Formato de Email incorrecto",
+    pattern: "^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$",
     required: true
 })
 
@@ -122,7 +124,8 @@ async function cargarSelect() {
     }))
     const $slcServicio = Presupuesto.crearSelect({
         id: 'servicio',
-        name: 'servicio'
+        name: 'servicio',
+        required: true
     }, opciones)
     //labels y select para descuentos
      const $lblPlazos = Presupuesto.crearLabel({
@@ -136,7 +139,8 @@ async function cargarSelect() {
     }))
     const $slcPlazos = Presupuesto.crearSelect({
         id: 'plazo',
-        name: 'plazo'
+        name: 'plazo',
+        required: true
     }, opcioneDes)
     $slcPlazos.disabled = true
     const $lblCostServ = Presupuesto.crearLabel({
@@ -265,7 +269,12 @@ async function cargarSelect() {
         $txtCostoTotal.value = costoTotal
     })
 }
-cargarSelect()
+async function init() {
+    await cargarSelect()
+    Presupuesto.validacionDatosPersonales()
+    Presupuesto.validarCamposObligatorios()
+}
+init()
 //#endregion
 //#region envio de formulario
 const $lblPermisoEnvio = Presupuesto.crearLabel({
@@ -294,4 +303,10 @@ const $btnReset = Presupuesto.crearInput({
 $lblPermisoEnvio.appendChild($chkPermisoEnvio)
 $contBotones.append($btnEnviar, $btnReset)
 $fsEnvio.append($lblPermisoEnvio, $contBotones)
+//#endregion
+//#region validaciones
+
+$formulario.addEventListener('submit', (e) => {
+    e.preventDefault()
+})
 //#endregion

@@ -409,6 +409,14 @@ main {
     color: var(--rojos-1);
     font-weight: bold;
 }
+.presupuesto-dp-error {
+    font-size: var(--font-s);
+    font-weight: bold;
+    color: red;
+}
+.presupuesto-dp-error-ocultar {
+    display: none;
+}
 .presupuesto-contenedor-Servicios {
     display: flex;
     flex-direction: column;
