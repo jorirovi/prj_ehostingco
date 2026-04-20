@@ -409,12 +409,15 @@ main {
     color: var(--rojos-1);
     font-weight: bold;
 }
+/*----Manejador de validaciones CSS*/
 .presupuesto-dp-error {
     font-size: var(--font-s);
     font-weight: bold;
     color: red;
 }
-.presupuesto-dp-error-ocultar {
+
+.presupuesto-dp-error-ocultar,
+.presupuesto-DE-error-ocultar {
     display: none;
 }
 .presupuesto-contenedor-Servicios {
@@ -424,7 +427,14 @@ main {
     align-items: flex-start;
     width: 90%;
     gap: .3rem;
+    border: 2px solid transparent;
+    transition: border 0.2s ease;
+    padding: 3px;
 }
+.presupuesto-contenedor-Servicios.error {
+    border: 2px solid red;
+}
+
 .presupuesto-contenedor-Servicios label {
     width: 305px;
     font-size: var(--font-m);
@@ -477,6 +487,20 @@ main {
     width: 250px;
 }
 
+.presupeuestos-lbl-chkenvio {
+    display: flex;
+    justify-content: space-between;
+    font-size: var(--font-m);
+    font-weight: bold;
+    width: 250px;
+    border: 2px solid transparent;
+    transition: border 0.5s ease;
+    padding: 3px;
+}
+
+.presupeuestos-lbl-chkenvio.error {
+    border: 2px solid red
+}
 
 .presupuesto-txt {
     border: none;
@@ -666,9 +690,13 @@ footer {
         flex-direction: row;
         justify-content: flex-start;
         align-items: center;
-        width: 100%;
+        width: 530px;
         gap: 1rem;
+        border: 2px solid transparent;
+        transition: border 0.2s ease;
+        padding: 3px;
     }
+
     .presupuesto-contenedor-Servicios label {
         width: 350px;
         font-size: var(--font-m);

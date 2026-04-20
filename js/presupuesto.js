@@ -272,14 +272,15 @@ async function cargarSelect() {
 async function init() {
     await cargarSelect()
     Presupuesto.validacionDatosPersonales()
-    Presupuesto.validarCamposObligatorios()
+    Presupuesto.validarCamposOEnvio()
+    Presupuesto.validarCamposPresupuesto()
 }
 init()
 //#endregion
 //#region envio de formulario
 const $lblPermisoEnvio = Presupuesto.crearLabel({
     htmlFor: "permiso",
-    className: "presupeuestos-lbl"
+    className: "presupeuestos-lbl-chkenvio"
 }, "¿Autoriza el tratamiento de información?" )
 const $chkPermisoEnvio = Presupuesto.crearInput({
     id: "permiso",

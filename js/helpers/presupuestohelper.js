@@ -43,7 +43,7 @@ export class Presupuesto {
         const opcionInicial = document.createElement('option')
         opcionInicial.value = ""
         opcionInicial.textContent = "Seleccione una opcion"
-        opcionInicial.disabled = true
+        //opcionInicial.disabled = true
         opcionInicial.selected = true
         select.appendChild(opcionInicial)
 
@@ -97,6 +97,7 @@ export class Presupuesto {
     }
 
     //Validaciones
+    //Metodo para validar los datos personales
     static validacionDatosPersonales() {
         const fsDatosPersonales = document.querySelector('.frm-datos')
         const inputsDP = document.querySelectorAll('.frm-datos [required]')
@@ -120,6 +121,7 @@ export class Presupuesto {
             })
         })
     }
+    //metodo donde se valida campos vacios o que no cumplan con el pattern
     static validarCampo(input) {
         const $span = document.getElementById(`error-${input.name}`);
         if (input.validity.valueMissing) {
@@ -134,48 +136,40 @@ export class Presupuesto {
         }
     }
 
-    static validarCamposObligatorios() {
-        const inputsP = document.querySelectorAll('.frm-presupuesto [required]')
-        const inputsE = document.querySelectorAll('.frm-envio [required]')
+    //Metodo para validar los campos fildset de presupuesto
+    static validarCamposPresupuesto() {
+        const slcServicio = document.getElementById('servicio')
+        const contSelect = document.querySelector('.presupuesto-contenedor-Servicios')
 
-        console.log(inputsP.length)
-        inputsP.forEach((input) => {
-            let $span = document.getElementById(`error-${input.name}`)
-            if (!$span) {
-                const $span = document.createElement('span')
-                $span.id = `error-${input.name}`
-                $span.classList.add("presupuesto-dp-error", "presupuesto-dp-error-ocultar")
-                input.insertAdjacentElement('afterend', $span)
+        if (slcServicio.value === "") {
+            contSelect.classList.add('error')
+        }
+
+        slcServicio.addEventListener('change', (e) => {
+            if(e.target.value === "") {
+                contSelect.classList.add('error')
+            } else {
+                contSelect.classList.remove('error')
             }
         })
-        inputsE.forEach((input) => {
-            let $span = document.getElementById(`error-${input.name}`)
-            if (!$span) {
-                const $span = document.createElement('span')
-                $span.id = `error-${input.name}`
-                $span.classList.add("presupuesto-dp-error", "presupuesto-dp-error-ocultar")
-                input.insertAdjacentElement('afterend', $span)
+    }
+
+
+    //Metodo para validar si el check de envio 
+    static validarCamposOEnvio() {
+        const chkEnvio = document.getElementById('permiso')
+        const contChkEnvio = document.querySelector('.presupeuestos-lbl-chkenvio')
+
+        if (!chkEnvio.checked) {
+            contChkEnvio.classList.add('error')
+        }
+
+        chkEnvio.addEventListener("change", (e) => {
+            if(!e.target.checked) {
+                contChkEnvio.classList.add('error')
+            } else {
+                contChkEnvio.classList.remove('error')
             }
         })
-
-        inputsP.forEach((input) => {
-
-            this.validarCampo(input)
-        })
-
-        inputsE.forEach((input) => {
-            input.addEventListener("change", (e) => {
-                const $span = document.getElementById(`error-${input.name}`)
-                if (!e.target.checked) {   
-                    $span.textContent = 'campo obligatorio'
-                    $span.classList.remove("presupuesto-dp-error-ocultar")
-                } else {
-                    $span.textContent = ""
-                    $span.classList.add("presupuesto-dp-error", "presupuesto-dp-error-ocultar")
-                }
-            })
-            
-        })
-        
     }
 }
