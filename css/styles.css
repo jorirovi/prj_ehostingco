@@ -461,6 +461,12 @@ main {
     width: 80%;
     min-height: 120px;
     gap: .3rem;
+    border: 2px solid transparent;
+    transition: border 2s ease;
+}
+
+.presupuesto-contenedor-subserv.error {
+    border: 2px solid red
 }
 
 .presupuesto-titulo-susbservicios,
@@ -669,7 +675,7 @@ footer {
     }
     /* Presupuesto*/
     .presupuesto-contenedor-subserv {
-        width: 100%;
+        width: 300px;
         min-height: 150px;
         justify-content: center;
     }

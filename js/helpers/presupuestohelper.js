@@ -154,8 +154,26 @@ export class Presupuesto {
         })
     }
 
+    //Metodo para validar si el check de los subservicio tiene al menos unos seleccionado
+    static validarChkSS() {
+        const contChkSS = document.querySelector('.presupuesto-contenedor-subserv')
+        const seleccionado = contChkSS.querySelector('input[type="checkbox"]:checked')
+        if (seleccionado) {
+            contChkSS.classList.remove('error')
+        } else {
+            contChkSS.classList.add('error')
+        }
 
-    //Metodo para validar si el check de envio 
+        contChkSS.addEventListener('change', (e) => {
+            if (e.target.type !== "checkbox") return
+            if (e.target.checked) {
+                contChkSS.classList.remove('error')
+            }
+        })
+        
+    }
+
+    //Metodo para validar si el check de envio esta activo
     static validarCamposOEnvio() {
         const chkEnvio = document.getElementById('permiso')
         const contChkEnvio = document.querySelector('.presupeuestos-lbl-chkenvio')

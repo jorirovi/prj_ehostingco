@@ -237,6 +237,7 @@ async function cargarSelect() {
         $txtCostServ.value = costoServicio
         costoTotal += costoServicio
         $txtCostoTotal.value = costoTotal
+        Presupuesto.validarChkSS()
     })
 
     $contPlazos.addEventListener("change", (e) => {
@@ -256,6 +257,25 @@ async function cargarSelect() {
 
     $contSubServicios.addEventListener("change", (e) => {
         if (e.target.type !== "checkbox") return
+        const checkboxes = $contSubServicios.querySelectorAll('input[type="checkbox"]')
+        if (e.target.value === "1") {
+            if (e.target.checked) {
+                checkboxes.forEach(chk => {
+                    if (chk !== e.target) {
+                        chk.disabled = true
+                        chk.checked = false
+                    } 
+                })
+            } else {
+                checkboxes.forEach(chk => {
+                    chk.disabled = false
+                })
+            }
+            $slcPlazos.disabled = false
+            $txtCostoTotal.value = costoServicio
+            $txtCostSS.value = 0
+            return
+        }
         $slcPlazos.disabled = false
         const costoMensual = Number(e.target.dataset.costm) || 0
         if (e.target.checked) {
