@@ -220,11 +220,10 @@ async function cargarSelect() {
                 className: "presupuesto-contenedor-opcioneSS"
             })
             const $lblSubServicios = Presupuesto.crearLabel({
-                htmlFor: "subservicio",
+                //htmlFor: "subservicio",
                 className: "presupuesto-label-subSer"
             }, item.nombre)
             const $chkSubServicios = Presupuesto.crearInput({
-                id: 'subservicio',
                 type: 'checkbox',
                 name: 'subservicios',
                 value: item.id,
@@ -294,6 +293,7 @@ async function init() {
     Presupuesto.validacionDatosPersonales()
     Presupuesto.validarCamposOEnvio()
     Presupuesto.validarCamposPresupuesto()
+    Presupuesto.validarSelectDescuentos()
 }
 init()
 //#endregion
@@ -325,9 +325,14 @@ $lblPermisoEnvio.appendChild($chkPermisoEnvio)
 $contBotones.append($btnEnviar, $btnReset)
 $fsEnvio.append($lblPermisoEnvio, $contBotones)
 //#endregion
-//#region validaciones
+//#region envio formulario
 
-$formulario.addEventListener('submit', (e) => {
+$formulario.addEventListener('submit', async (e) => {
     e.preventDefault()
+    const servicios = await Presupuesto.obtenerServicios()
+    const descuentos = await Presupuesto.obtenerDescuentos()
+    const data = Presupuesto.ValidarForm()
+    console.log(data)
+    
 })
 //#endregion

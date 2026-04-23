@@ -111,8 +111,9 @@ export class Presupuesto {
                 input.insertAdjacentElement('afterend', $span)
             }
         })
-
+        
         inputsDP.forEach((input) => {
+            this.validarCampo(input)
             input.addEventListener("input", (e) => {
                 this.validarCampo(input)
             })
@@ -140,14 +141,17 @@ export class Presupuesto {
     static validarCamposPresupuesto() {
         const slcServicio = document.getElementById('servicio')
         const contSelect = document.querySelector('.presupuesto-contenedor-Servicios')
+        const contChkSS = document.querySelector('.presupuesto-contenedor-subserv')
 
         if (slcServicio.value === "") {
             contSelect.classList.add('error')
         }
 
         slcServicio.addEventListener('change', (e) => {
+            this.validarSelectDescuentos()
             if(e.target.value === "") {
                 contSelect.classList.add('error')
+                contChkSS.classList.remove('error')
             } else {
                 contSelect.classList.remove('error')
             }
@@ -158,6 +162,7 @@ export class Presupuesto {
     static validarChkSS() {
         const contChkSS = document.querySelector('.presupuesto-contenedor-subserv')
         const seleccionado = contChkSS.querySelector('input[type="checkbox"]:checked')
+        const slcDescuentos = document.getElementById('plazo')
         if (seleccionado) {
             contChkSS.classList.remove('error')
         } else {
@@ -168,6 +173,9 @@ export class Presupuesto {
             if (e.target.type !== "checkbox") return
             if (e.target.checked) {
                 contChkSS.classList.remove('error')
+                this.validarSelectDescuentos()
+            } else {
+                contChkSS.classList.add('error')
             }
         })
         
@@ -189,5 +197,115 @@ export class Presupuesto {
                 contChkEnvio.classList.remove('error')
             }
         })
+    }
+
+    //metodo para validar el select de descuentos
+    static validarSelectDescuentos() {
+        const slcDescuentos = document.getElementById('plazo')
+        const contSlcDes = document.querySelector('.presupuesto-cont-plazos')
+
+        if (slcDescuentos.disabled) {
+            contSlcDes.classList.remove('error')
+            return
+        } else if (slcDescuentos.value === "") {
+            contSlcDes.classList.add('error')
+        } else {
+            contSlcDes.classList.remove('error')
+        }
+
+        slcDescuentos.addEventListener('change', (e) => {
+            if (e.target.value === "") {
+                contSlcDes.classList.add('error')
+            } else {
+                contSlcDes.classList.remove('error')
+            }
+        })
+    }
+
+    //metodo para validar campos
+    static ValidarForm() {
+        const txtNombre = document.getElementById('nombre').value
+        const txtApellido = document.getElementById('apellido').value
+        const txtTel = document.getElementById('tel').value
+        const txtEmail = document.getElementById('email').value
+        const slcServicio = document.getElementById('servicio').value
+        const chkSubServicios = document.querySelectorAll('[name="subservicios"]:checked')
+        const slcdescuentos = document.getElementById('plazo').value
+        const chkenvio = document.getElementById("permiso")
+        let hayError = false;
+        let mensaje = '';
+        //Expresiones Regulares
+        const regNombre   = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ]+$/;
+        const regApellido = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/;
+        const regTelefono = /^[6789]\d{8}$/;
+        const regEmail    = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        let arraySS = []
+        chkSubServicios.forEach(item => {
+            arraySS.push(...item.value)
+        })
+        if (!regNombre.test(txtNombre) || txtNombre === '') {
+            mensaje += 'Nombre no valido \n'
+            hayError = true
+        }
+        if (!regApellido.test(txtApellido) || txtApellido === '') {
+            mensaje += 'Apellido no valido \n'
+            hayError = true
+        }
+        if (!regTelefono.test(txtTel) || txtTel === '') {
+            mensaje += 'N de Telefono no valido \n'
+            hayError = true
+        }
+        if (!regEmail.test(txtEmail) || txtEmail === '') {
+            mensaje += 'Email no valido \n'
+            hayError = true
+        }
+        if (slcServicio.value === "") {
+            mensaje += 'debe seleccionar al menos un servicio'
+            hayError = true
+        }
+        if (arraySS.length === 0) {
+            mensaje += 'debe seleccionar al menos un sub-servicio'
+            hayError = true
+        }
+        if (slcdescuentos.value === "") {
+            mensaje += 'debe seleccionar un porcentaje de descuento'
+            hayError = true
+        }
+        if (hayError) {
+            alert(mensaje)
+            return
+        }
+        const datos = {
+            nombre: txtNombre,
+            apellido: txtApellido,
+            telefono: txtTel,
+            email: txtEmail,
+            servicio: slcServicio,
+            subservicios: arraySS,
+            descuento: slcdescuentos
+        }
+        return datos
+    }
+}
+export class DatosPresupuesto {
+    constructor (nombre, apellido, telefono, correo, servicio, subservicios, descuento) {
+        this.nombre = nombre
+        this.apellido = apellido
+        this.telefono = telefono
+        this.correo = correo
+        this.servicio = servicio
+        this.subservicios = subservicios
+        this.descuento = descuentoS
+
+        this.costoServicio = 0
+        this.totalSS = 0
+        this.PorcentajeDescuento = 0
+        this.totalPresupuesto = 0
+    }
+
+    //Metodos
+    async precioServicio() {
+        console.log('Hola Mundo')
+
     }
 }
