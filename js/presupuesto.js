@@ -343,6 +343,7 @@ $formulario.addEventListener('submit', async (e) => {
     )
     nuevoPresupuesto.precioServicio(servicios)
     nuevoPresupuesto.precioSubServicios(servicios)
+    nuevoPresupuesto.decuentoAplicado(descuentos)
     //modal
     const $modal = document.getElementById('modal')
     const $cerrar = document.getElementById('closeModal')

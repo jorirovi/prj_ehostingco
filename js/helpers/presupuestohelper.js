@@ -318,4 +318,8 @@ export class DatosPresupuesto {
         })
         this.totalSS = acum
     }
+    decuentoAplicado(plazos){
+        const valor = plazos.descuentos.find(item => item.id === Number(this.descuento))
+        this.PorcentajeDescuento = valor.descuento
+    }
 }
