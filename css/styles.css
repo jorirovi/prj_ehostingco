@@ -559,7 +559,33 @@ main {
     color: var(--azules-4);
     cursor: pointer;
 }
+/*---------------------MODAL para ver resultados del envio------------------------*/
+.modal {
+    display: block; /* oculto por defecto */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+.ocultar {
+    display: none;
+}
+.modal-content {
+    background: white;
+    padding: 20px;
+    margin: 15% auto;
+    width: 300px;
+    border-radius: 8px;
+    text-align: center;
+}
 
+.close {
+    float: right;
+    cursor: pointer;
+    font-size: 20px;
+}
 
 /*+++++++++++++++++++++++ Footer ++++++++++++++++++++++++++++++*/
 footer {

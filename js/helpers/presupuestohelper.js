@@ -295,7 +295,7 @@ export class DatosPresupuesto {
         this.correo = correo
         this.servicio = servicio
         this.subservicios = subservicios
-        this.descuento = descuentoS
+        this.descuento = descuento
 
         this.costoServicio = 0
         this.totalSS = 0
@@ -304,8 +304,18 @@ export class DatosPresupuesto {
     }
 
     //Metodos
-    async precioServicio() {
-        console.log('Hola Mundo')
+    precioServicio(dataServicio) {
+        const valor = dataServicio.servicios.find(item => item.id === Number(this.servicio))
+        this.costoServicio = Number(valor.preciomes)
+    }
 
+    precioSubServicios(dataServicio) {
+        const subSer = dataServicio.planes_adicionales.find(item => item.idservicio === Number(this.servicio))
+        let acum = 0
+        this.subservicios.forEach(ss => {
+            const costSS = subSer.items.find(idSS => idSS.id === Number(ss))
+            acum += costSS.costM
+        })
+        this.totalSS = acum
     }
 }
