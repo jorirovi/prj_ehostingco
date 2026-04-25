@@ -561,7 +561,10 @@ main {
 }
 /*---------------------MODAL para ver resultados del envio------------------------*/
 .modal {
-    display: block; /* oculto por defecto */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     position: fixed;
     top: 0;
     left: 0;
@@ -573,18 +576,50 @@ main {
     display: none;
 }
 .modal-content {
-    background: white;
-    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    background: var(--amaril-2);
     margin: 15% auto;
-    width: 300px;
+    width: 500px;
     border-radius: 8px;
-    text-align: center;
+    text-align: justify;
+    color: var(--azules-2);
+    font-size: var(--font-m);
+    font-weight: bold;
+}
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 50px;
+    width: 100%;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    background: var(--azules-5);
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.Titulo-Modal {
+    color: var(--amaril-3);
+}
+
+.modal-body {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px;
+}
+.modal-lista {
+    list-style-position: inside;
 }
 
 .close {
-    float: right;
+    /*float: right;*/
     cursor: pointer;
-    font-size: 20px;
+    font-size: 35px;
+    color: var(--rojos-2);
 }
 
 /*+++++++++++++++++++++++ Footer ++++++++++++++++++++++++++++++*/

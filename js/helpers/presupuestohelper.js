@@ -95,6 +95,14 @@ export class Presupuesto {
         p.textContent = texto
         return p
     }
+    //metodo para crear span
+    static crearSpan(atributos) {
+        const span = document.createElement('span')
+        Object.entries(atributos).forEach(([key, value]) => {
+            span[key] = value
+        })
+        return span
+    }
 
     //Validaciones
     //Metodo para validar los datos personales
@@ -233,7 +241,7 @@ export class Presupuesto {
         const slcdescuentos = document.getElementById('plazo').value
         const chkenvio = document.getElementById("permiso")
         let hayError = false;
-        let mensaje = '';
+        let mensaje = [];
         //Expresiones Regulares
         const regNombre   = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ]+$/;
         const regApellido = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/;
@@ -243,39 +251,48 @@ export class Presupuesto {
         chkSubServicios.forEach(item => {
             arraySS.push(...item.value)
         })
+       
         if (!regNombre.test(txtNombre) || txtNombre === '') {
-            mensaje += 'Nombre no valido \n'
+            mensaje.push('Nombre no Valido')
             hayError = true
         }
         if (!regApellido.test(txtApellido) || txtApellido === '') {
-            mensaje += 'Apellido no valido \n'
+            mensaje.push('Apellido no valido')
             hayError = true
         }
         if (!regTelefono.test(txtTel) || txtTel === '') {
-            mensaje += 'N de Telefono no valido \n'
+            mensaje.push('N de Telefono no valido')
             hayError = true
         }
         if (!regEmail.test(txtEmail) || txtEmail === '') {
-            mensaje += 'Email no valido \n'
+            mensaje.push('Email no valido')
             hayError = true
         }
-        if (slcServicio.value === "") {
-            mensaje += 'debe seleccionar al menos un servicio'
+        if (slcServicio === "") {
+            mensaje.push('debe seleccionar al menos un servicio')
             hayError = true
         }
         if (arraySS.length === 0) {
-            mensaje += 'debe seleccionar al menos un sub-servicio'
+            mensaje.push('debe seleccionar al menos un sub-servicio')
             hayError = true
         }
-        if (slcdescuentos.value === "") {
-            mensaje += 'debe seleccionar un porcentaje de descuento'
+        if (slcdescuentos === "") {
+            mensaje.push('debe seleccionar un porcentaje de descuento')
+            hayError = true
+        }
+        if (!chkenvio.checked) {
+            mensaje.push('debe Autorizar el tratamiento de información')
             hayError = true
         }
         if (hayError) {
-            alert(mensaje)
-            return
+            this.cargarModalError(mensaje)
+            const datos = {
+                ok: false
+            }
+            return datos
         }
         const datos = {
+            ok: true,
             nombre: txtNombre,
             apellido: txtApellido,
             telefono: txtTel,
@@ -285,6 +302,59 @@ export class Presupuesto {
             descuento: slcdescuentos
         }
         return datos
+    }
+
+    //Metodo para cargar el modal con error
+    static cargarModalError(mensajes){
+        const $modal = document.getElementById('modal')
+        const $contModal = this.crearDiv({id: "contModal", className: "modal-content"})
+        const $divH = this.crearDiv({className: "modal-header"})
+        const $divB = this.crearDiv({className: "modal-body"})
+        const $cerrar = this.crearSpan({id: 'closeModal', className: "close"})
+        const $titulo = this.crearParrafo({className: 'Titulo-Modal'}, 'Validaciones del Formulario')
+        $cerrar.innerHTML = "&times;"
+        const $lista = document.createElement('ul')
+        $lista.classList.add('modal-lista')
+        mensajes.map(mensaje => {
+            const $li = document.createElement('li')
+            $li.textContent = mensaje
+            $lista.appendChild($li)
+        })
+        $divH.append($titulo, $cerrar)
+        $divB.append($lista)
+        $contModal.append($divH, $divB)
+        $modal.appendChild($contModal)
+        $modal.classList.remove('ocultar')
+        $modal.classList.add('modal')
+        $cerrar.addEventListener('click', () => {
+            $modal.classList.add('ocultar')
+            $modal.classList.remove('modal')
+            $modal.innerHTML = ''
+        })
+    }
+
+    //metodo para cargar el modal con el resultado dek formulario OK
+    static cargarModal(nombre) {
+        const $modal = document.getElementById('modal')
+        const $contModal = this.crearDiv({id: "contModal", className: "modal-content"})
+        const $divH = this.crearDiv({className: "modal-header"})
+        const $divB = this.crearDiv({className: "modal-body"})
+        const $cerrar = this.crearSpan({id: 'closeModal', className: "close"})
+        const $titulo = this.crearParrafo({className: 'Titulo-Modal'}, 'Formulario Correcto')
+        $cerrar.innerHTML = "&times;"
+        const mensaje = `En ¡Hora Buena! ${nombre} tu solicitud a sido enviada y nuestro equipo de comercial se pondra en contacto con usted`
+        const $parrafo = this.crearParrafo({className: 'modal-parafo-envio'}, mensaje)
+        $divH.append($titulo, $cerrar)
+        $divB.append($parrafo)
+        $contModal.append($divH, $divB)
+        $modal.appendChild($contModal)
+        $modal.classList.remove('ocultar')
+        $modal.classList.add('modal')
+        $cerrar.addEventListener('click', () => {
+            $modal.classList.add('ocultar')
+            $modal.classList.remove('modal')
+            window.location.href = './galeria.html'
+        })
     }
 }
 export class DatosPresupuesto {
@@ -301,25 +371,33 @@ export class DatosPresupuesto {
         this.totalSS = 0
         this.PorcentajeDescuento = 0
         this.totalPresupuesto = 0
+        this.nomServ = ""
+        this.subserviciosNom = []
     }
 
     //Metodos
     precioServicio(dataServicio) {
         const valor = dataServicio.servicios.find(item => item.id === Number(this.servicio))
         this.costoServicio = Number(valor.preciomes)
+        this.nomServ = valor.nombre
     }
 
     precioSubServicios(dataServicio) {
         const subSer = dataServicio.planes_adicionales.find(item => item.idservicio === Number(this.servicio))
         let acum = 0
         this.subservicios.forEach(ss => {
-            const costSS = subSer.items.find(idSS => idSS.id === Number(ss))
-            acum += costSS.costM
+            const itemSS = subSer.items.find(idSS => idSS.id === Number(ss))
+            acum += itemSS.costM
+            this.subserviciosNom.push(itemSS.nombre)
         })
         this.totalSS = acum
     }
     decuentoAplicado(plazos){
         const valor = plazos.descuentos.find(item => item.id === Number(this.descuento))
         this.PorcentajeDescuento = valor.descuento
+    }
+    calcularPresupuesto() {
+        const valor_1 = this.costoServicio + this.totalSS
+        this.totalPresupuesto = (valor_1) - (valor_1 * this.PorcentajeDescuento) 
     }
 }

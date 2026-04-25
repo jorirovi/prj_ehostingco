@@ -332,31 +332,24 @@ $formulario.addEventListener('submit', async (e) => {
     const servicios = await Presupuesto.obtenerServicios()
     const descuentos = await Presupuesto.obtenerDescuentos()
     const data = Presupuesto.ValidarForm()
-    const nuevoPresupuesto = new DatosPresupuesto(
-        data.nombre, 
-        data.apellido, 
-        data.telefono,
-        data.email,
-        data.servicio,
-        data.subservicios,
-        data.descuento
-    )
-    nuevoPresupuesto.precioServicio(servicios)
-    nuevoPresupuesto.precioSubServicios(servicios)
-    nuevoPresupuesto.decuentoAplicado(descuentos)
-    //modal
-    const $modal = document.getElementById('modal')
-    const $cerrar = document.getElementById('closeModal')
-    const $parrafo = document.getElementById('modalMessage')
-    $parrafo.textContent = `Estimado ${nuevoPresupuesto.nombre} su presupuesto se a enviado correctamente`
-    $modal.classList.add("modal")
-    $modal.classList.remove("ocultar")
-    $cerrar.addEventListener('click', () => {
-        $modal.classList.add('ocultar')
-        $modal.classList.remove('modal')
-        window.location.href = '/views/galeria.html'
-    })
-    console.log(nuevoPresupuesto)
+    if (data.ok) {
+        const nuevoPresupuesto = new DatosPresupuesto(
+            data.nombre, 
+            data.apellido, 
+            data.telefono,
+            data.email,
+            data.servicio,
+            data.subservicios,
+            data.descuento
+        )
+        nuevoPresupuesto.precioServicio(servicios)
+        nuevoPresupuesto.precioSubServicios(servicios)
+        nuevoPresupuesto.decuentoAplicado(descuentos)
+        nuevoPresupuesto.calcularPresupuesto()
+        //modal
+        Presupuesto.cargarModal(nuevoPresupuesto.nombre)
+    } 
+    
     
 })
 //#endregion
