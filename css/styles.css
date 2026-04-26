@@ -622,6 +622,35 @@ main {
     color: var(--rojos-2);
 }
 
+/*----------------------- Contacto ----------------------------*/
+.contacto-main {
+    background: url(../assets/images/contacto-vertical.jpg) no-repeat center center / cover;
+}
+.section-contacto-datos {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+}
+.section-contacto-mapa {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+}
+.contacto-datos-card,
+.contacto-mapa-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(210, 202, 159, 0.5);
+    width: 85%;
+    height: 85%;
+    border-radius: 8px;
+}
+
 /*+++++++++++++++++++++++ Footer ++++++++++++++++++++++++++++++*/
 footer {
     display: flex;
@@ -722,6 +751,10 @@ footer {
 
     .seccion-vision-reverse {
         flex-direction: row-reverse;
+    }
+    /*--------------- Main Contacto ---------------------*/
+    .contacto-main {
+        background: url(../assets/images/contacto-horizontal.jpg) no-repeat center center / cover;
     }
     
     /*------------- Noticias ------------------------*/
