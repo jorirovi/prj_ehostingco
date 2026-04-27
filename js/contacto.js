@@ -32,4 +32,4 @@ etiquetas.forEach((etiqueta, index) => {
     $span.appendChild($data)
     $contInfo.appendChild($span)
 })
-$contDatos.append($contSubTitulo, $contInfo) 
+$contDatos.append($contSubTitulo, $contInfo)
