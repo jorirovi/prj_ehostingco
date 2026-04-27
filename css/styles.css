@@ -643,12 +643,25 @@ main {
 .contacto-datos-card,
 .contacto-mapa-card {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     background: rgba(210, 202, 159, 0.5);
     width: 85%;
     height: 85%;
     border-radius: 8px;
+}
+
+.contacto-contenedor-datos-subtitulo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    padding-top: 50px;
+}
+.contacto-datos-subtitulo {
+    color: var(--azules-5);
+    font-size: 50px;
 }
 
 /*+++++++++++++++++++++++ Footer ++++++++++++++++++++++++++++++*/
