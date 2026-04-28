@@ -664,6 +664,32 @@ main {
     font-size: 50px;
 }
 
+.contacto-contenedor-datos-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    gap: .5rem;
+}
+
+.contacto-datos-etiqueta-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    color: var(--azules-4);
+    font-size: var(--font-m);
+    font-weight: bold;
+}
+
+.contacto-datos-info {
+    width: 150px;
+    color: var(--rojos-2);
+    font-size: var(--font-m);
+    font-weight: bold;
+}
+
 /*+++++++++++++++++++++++ Footer ++++++++++++++++++++++++++++++*/
 footer {
     display: flex;
@@ -767,7 +793,25 @@ footer {
     }
     /*--------------- Main Contacto ---------------------*/
     .contacto-main {
-        background: url(../assets/images/contacto-horizontal.jpg) no-repeat center center / cover;
+        background: var(--amaril-2)
+
+    }
+
+    .contacto-datos-card {
+        background: url(../assets/images/contacto-horizontal.jpg) no-repeat center center / cover;;
+    }
+
+
+    .contacto-datos-etiqueta-info {
+        justify-content: space-between;
+        width: 500px;
+        color: var(--amaril-4);
+    }
+
+    .contacto-datos-info {
+        display: flex;
+        width: 400px;
+        justify-content: flex-end;
     }
     
     /*------------- Noticias ------------------------*/
