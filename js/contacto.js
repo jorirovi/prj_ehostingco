@@ -1,5 +1,16 @@
 import { CreadorTagsHTML } from '../js/helpers/creartags.js'
 
+//Funcion para animacion
+const animacionContacto = () => {
+    const datos = document.getElementById('datos')
+    gsap.from(datos, {
+        y: 200,
+        duration: 1,
+        delay: .5,
+        ease: "power3.out"
+    })
+}
+
 //menu Secundario
 const $navSecundario = document.getElementById('navsecundario')
 const $menumov = document.getElementById('menumov')
@@ -27,7 +38,7 @@ const $contSubTitulo = CreadorTagsHTML.crarDiv({
 })
 const $subtitulo = CreadorTagsHTML.crearH3({
     id: 'subtitulo',
-    className: 'contacto-datos-subtitulo mb-100'
+    className: 'contacto-datos-subtitulo mb-50'
 }, "Contactanos")
 $contSubTitulo.appendChild($subtitulo)
 const $contInfo = CreadorTagsHTML.crarDiv({
@@ -53,6 +64,8 @@ etiquetas.forEach((etiqueta, index) => {
     $contInfo.appendChild($span)
 })
 $contDatos.append($contSubTitulo, $contInfo)
+
+animacionContacto()
 
 //Mapa
 const navegacion = navigator.geolocation

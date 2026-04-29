@@ -1,5 +1,15 @@
 import { DatosPresupuesto, Presupuesto } from "./helpers/presupuestohelper.js"
 
+//Metodo para animacion
+const animacionPresupuesto = () => {
+    const presupuestoFrm = document.querySelector('.frm-contacto')
+    gsap.from(presupuestoFrm, {
+        y: 200,
+        duration: 1,
+        delay: .5,
+        ease: "power3.out"
+    })
+}
 
 //Llamaremos a los fieldset=fs
 const $formulario = document.querySelector('.frm-contacto')
@@ -350,7 +360,6 @@ $formulario.addEventListener('submit', async (e) => {
         //modal
         Presupuesto.cargarModal(nuevoPresupuesto.nombre)
     } 
-    
-    
 })
+animacionPresupuesto()
 //#endregion

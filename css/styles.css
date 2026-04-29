@@ -46,6 +46,12 @@ body {
     justify-content: center;
     min-height: 100vh;
 }
+.visual-oculto {
+    display: none;
+}
+.mb-50 {
+    margin-bottom: 50px;
+}
 .mb-100 {
     margin-bottom: 100px;
 }
@@ -891,5 +897,15 @@ footer {
 
     .presupeuestos-lbl {
         justify-content: left;
+    }
+
+    .contacto-datos-etiqueta-info {
+        font-size: var(--font-l);
+        width: 610px;
+    }
+
+    .contacto-datos-info {
+        font-size: var(--font-l);
+        width: 600px;
     }
   }
