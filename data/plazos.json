@@ -1,0 +1,24 @@
+{
+    "descuentos" : [
+        {
+            "id" : 1,
+            "plazo" : "De 1 a 5 meses 0%",
+            "descuento" : 0
+        },
+         {
+            "id" : 2,
+            "plazo" : "De 6 a 11 meses 10%",
+            "descuento" : 0.1
+        },
+        {
+            "id" : 3,
+            "plazo" : "De 12 a 19 meses 20%",
+            "descuento" : 0.2
+        },
+        {
+            "id" : 4,
+            "plazo" : "De 20 a 24 meses 30%",
+            "descuento" : 0.3
+        }
+    ]
+}

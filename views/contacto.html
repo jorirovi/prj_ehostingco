@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../assets/icon/ico-principal.svg" type="image/x-icon">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css">
+    <title>Contacto</title>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="" defer></script>
+    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js" defer></script>
+    <script src="../js/comunes/header.js" defer></script>
+    <script src="../js/comunes/footer.js" defer></script>
+    <script type="module" src="../js/contacto.js"></script>
+</head>
+<body>
+    <header>
+        <h1 id="titulo" class="titulo-pagina">eHostingCO</h1>
+        <nav id="menu" class="mi-menu"></nav>
+    </header>
+    <main class="contacto-main">
+        <section id="menumov" class="seccion-menu">
+            <h2 class="visual-oculto">Menu Secundario</h2>
+            <nav id="navsecundario" class="navegador-secundario"></nav>
+        </section>
+        <section id="datos" class="section-contacto-datos">
+            <h2 class="visual-oculto">Contacatanos</h2>
+            <div class="contacto-datos-card"></div>
+        </section>
+        <section id="mapa" class="section-contacto-mapa">
+            <h2 class="visual-oculto">Ubicanos</h2>
+            <div class="contacto-mapa-card" id="map">mapa</div>
+        </section>
+    </main>
+    <footer>
+        <h2 id="pie" class="pie-titulo">eHostingCO</h2>
+        <p id="direccion" class="pie-diraccion"></p>
+        <div id="iconos" class="pie-iconos"></div>
+        <p id="derechos" class="pie-derechos"></p>
+    </footer>
+</body>
+</html>

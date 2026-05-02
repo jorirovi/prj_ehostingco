@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./assets/icon/ico-principal.svg" type="image/x-icon">
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <title>eHostingCO</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/gsap.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/ScrollTrigger.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/SplitText.min.js" defer></script>
+    <script src="./js/comunes/header.js" defer></script>
+    <script src="./js/index.js" defer></script>
+    <script src="./js/helpers/noticias.js" defer></script>
+    <script src="./js/comunes/footer.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1 id="titulo" class="titulo-pagina">eHostingCO</h1>
+        <nav id="menu" class="mi-menu"></nav>  
+    </header>
+    <main>
+        <section id="menumov" class="seccion-menu">
+            <h2 class="visual-oculto">Menu Secundario</h2>
+            <nav id="navsecundario" class="navegador-secundario"></nav>
+        </section>
+        <section id="seccioneslogan" class="seccion-principal seccion-eslogan mb-100">
+            <h2 id="eslogan">Eslogan de la Pagina</h2>
+        </section>
+        <section id="visionmision" class="seccion-principal mb-100">
+            <h2 class="visual-oculto">Vision y Mision</h2>
+            <div id="mision" class="seccion-mision"></div>
+            <div id="vision" class="seccion-vision seccion-vision-reverse"></div>
+        </section>   
+        <section id="noticias" class="noticias">
+           <h2 class="contenedor-noticias">Noticias Tech ></h2> 
+        </section>
+    </main>
+    <footer>
+        <h2 id="pie" class="pie-titulo">eHostingCO</h2>
+        <p id="direccion" class="pie-diraccion"></p>
+        <div id="iconos" class="pie-iconos"></div>
+        <p id="derechos" class="pie-derechos"></p>
+    </footer>
+</body>
+</html>

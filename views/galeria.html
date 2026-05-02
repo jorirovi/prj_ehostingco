@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../assets/icon/ico-principal.svg" type="image/x-icon">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <title>Galeria</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/ScrollTrigger.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/Flip.min.js" defer></script>
+    <script src="../js/comunes/header.js" defer></script>
+    <script src="../js/comunes/footer.js" defer></script>
+    <script src="../js/galeria.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1 id="titulo" class="titulo-pagina">eHostingCO</h1>
+        <nav id="menu" class="mi-menu"></nav>
+    </header>
+    <main>
+        <section id="menumov" class="seccion-menu">
+            <h2 class="visual-oculto">Menu Secundario</h2>
+            <nav id="navsecundario" class="navegador-secundario"></nav>
+        </section>
+        <section id="seccionuno" class="seccion-uno">
+            <div class="galeria-portada">
+                <h2 class="galeria-subtitulo">Titulo Para Galeria</h2>
+                <img src="../assets/images/galeria-principal.jpg" alt="Servicios" height="400" width="600">
+                <img class="galeria-flecha" src="../assets/images/arrow-down.svg" alt="flecha" height="50" width="50">
+            </div>
+        </section>
+        <section class="seccion-galeria">
+            <h2 class="titulo-galeria">Conoce nuestros servicios:</h2>
+            <div id="galeria" class="galeria"></div>
+        </section>
+    </main>
+    <footer>
+        <h2 id="pie" class="pie-titulo">eHostingCO</h2>
+        <p id="direccion" class="pie-diraccion"></p>
+        <div id="iconos" class="pie-iconos"></div>
+        <p id="derechos" class="pie-derechos"></p>
+    </footer>
+</body>
+</html>
