@@ -36,7 +36,7 @@ fetch("./data/noticias.json")
             $tituloNoticia.classList.add('noticia-titulo');
             $contImgNoticia.style.backgroundImage = `url("${item.image}")`;
             $contImgNoticia.addEventListener('mouseenter', () => {
-                $contImgNoticia.style.backgroundImage = `url("../assets/images/hosting-horizontal.jpg")`;
+                $contImgNoticia.style.backgroundImage = `url("./assets/images/hosting-horizontal.jpg")`;
                 $tituloNoticia.textContent = item.title;
                 $contImgNoticia.appendChild($tituloNoticia);
             });
