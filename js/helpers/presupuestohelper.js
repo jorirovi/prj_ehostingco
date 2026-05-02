@@ -2,7 +2,7 @@
 export class Presupuesto {
     //Metodo para obtener los datos del json de Servicios
     static async obtenerServicios() {
-        const url = './data/servicios.json'
+        const url = '/prj_ehostingco/data/servicios.json'
         try {
             const response = await fetch(url)
             
@@ -18,7 +18,7 @@ export class Presupuesto {
 
     //Metodo para obtener los datos del Json de plazos para descuentos
     static async obtenerDescuentos() {
-        const url = './data/plazos.json'
+        const url = '/prj_ehostingco/data/plazos.json'
         try {
             const response = await fetch(url)
             

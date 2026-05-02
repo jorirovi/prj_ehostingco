@@ -111,6 +111,10 @@ async function cargarSelect() {
     //json de descuentos
     const descuentos = await Presupuesto.obtenerDescuentos()
     //contenedores
+    if (!servicios || !descuentos) {
+        console.log('No se pudieron cargar los JSON')
+        return
+    }
     const $contServicios = Presupuesto.crearDiv({
         className: "presupuesto-contenedor-Servicios"
     })
