@@ -5,11 +5,11 @@ export class Presupuesto {
         const url = './data/servicios.json'
         try {
             const response = await fetch(url)
-            const data = await response.json()
+            
             if (!response.ok) {
                 throw new Error("No se pudieron obtener los servicios")  
             }
-            return data
+            return await response.json()
         } catch (err) {
             alert(err)
             console.error(err)
@@ -21,11 +21,11 @@ export class Presupuesto {
         const url = './data/plazos.json'
         try {
             const response = await fetch(url)
-            const data = await response.json()
+            
             if (!response.ok) {
                 throw new Error("No se pudieron obtner los descuentos")
             }
-            return data
+            return await response.json()
         } catch (err) {
             alert (err)
             console.error(err)
