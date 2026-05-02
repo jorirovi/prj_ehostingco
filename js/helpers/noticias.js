@@ -18,8 +18,9 @@ function iniScrollHorizontal() {
     });
 }
 
-fetch("/prj_ehostingco/data/noticias.json")
+fetch("./data/noticias.json")
     .then((res) => {
+        console.log(res)
         if (!res.ok) throw new Error("No se pudo cargar el JSON: " + res.status);
         return res.json();
     })
