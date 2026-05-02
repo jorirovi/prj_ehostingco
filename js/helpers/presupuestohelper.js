@@ -334,7 +334,7 @@ export class Presupuesto {
     }
 
     //metodo para cargar el modal con el resultado dek formulario OK
-    static cargarModal(nombre) {
+    static cargarModal(presupuesto) {
         const $modal = document.getElementById('modal')
         const $contModal = this.crearDiv({id: "contModal", className: "modal-content"})
         const $divH = this.crearDiv({className: "modal-header"})
@@ -342,7 +342,7 @@ export class Presupuesto {
         const $cerrar = this.crearSpan({id: 'closeModal', className: "close"})
         const $titulo = this.crearParrafo({className: 'Titulo-Modal'}, 'Formulario Correcto')
         $cerrar.innerHTML = "&times;"
-        const mensaje = `En ¡Hora Buena! ${nombre} tu solicitud a sido enviada y nuestro equipo de comercial se pondra en contacto con usted`
+        const mensaje = `En ¡Hora Buena! ${presupuesto.nombre} tu solicitud a sido enviada y nuestro equipo de comercial se pondra en contacto contigo`
         const $parrafo = this.crearParrafo({className: 'modal-parafo-envio'}, mensaje)
         $divH.append($titulo, $cerrar)
         $divB.append($parrafo)

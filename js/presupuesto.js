@@ -358,8 +358,10 @@ $formulario.addEventListener('submit', async (e) => {
         nuevoPresupuesto.decuentoAplicado(descuentos)
         nuevoPresupuesto.calcularPresupuesto()
         //modal
-        Presupuesto.cargarModal(nuevoPresupuesto.nombre)
+        console.log(nuevoPresupuesto)
+        Presupuesto.cargarModal(nuevoPresupuesto)
     } 
 })
+//llama a la funcion para realizar la animacion
 animacionPresupuesto()
 //#endregion
